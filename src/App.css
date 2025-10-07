@@ -1,0 +1,91 @@
+body {
+  padding: 2px 5px;
+  background-color: rgb(255, 255, 255);
+  /* font-family: sans-serif; */
+}
+
+/* Hide scrollbar globally or for a class */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari, Opera */
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  /* IE 10+ */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.4s ease-in-out forwards;
+}
+
+
+@keyframes fadeSideIn {
+  from {
+    opacity: 0;
+    transform: translateX(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fadeSideIn {
+  animation: fadeSideIn 0.3s ease-in-out forwards;
+}
+
+
+
+/* === Custom Scrollbar === */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  /* thin scrollbar */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+  /* no track */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #005eff;
+  /* gray */
+  border-radius: 9999px;
+  /* fully rounded */
+  border: 2px solid transparent;
+  /* space between thumb and edge */
+  background-clip: content-box;
+  transition: background-color 0.3s ease;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #3b82f6;
+  /* blue */
+}
+
+/* Hide scrollbar buttons (top/bottom arrows) */
+.custom-scrollbar::-webkit-scrollbar-button {
+  display: none;
+}
+
+/* Firefox support */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #9ca3af transparent;
+}
