@@ -1,18 +1,75 @@
+import { useState, useEffect } from "react";
+import { IoSearchSharp, IoClose } from "react-icons/io5";
 
 function SearchBar({ placeholder, searchInput, setSearchInput }) {
+    const [isFocused, setIsFocused] = useState(false);
+    const [showClear, setShowClear] = useState(false);
+
+    useEffect(() => {
+        setShowClear(searchInput.trim().length > 0);
+    }, [searchInput]);
+
+    const handleClear = () => setSearchInput("");
 
     return (
+        <div
+            className={`
+        relative w-[85%] mx-auto transition-all duration-500 ease-in-out
+        ${isFocused ? "scale-[1.03]" : "scale-100"}
+      `}
+        >
+            {/* Search Icon */}
+            <IoSearchSharp
+                className={`z-10
+          absolute left-3 top-1/2 -translate-y-1/2 text-lg transition-all duration-300
+          ${isFocused ? "text-[#6c49cd]" : "text-gray-500"}
+        `}
+            />
 
-        <div className="w-[90%] animate-fadeIn">
-            <input className=" w-full border-none outline-none rounded-3xl px-3 py-1.5  bg-white text-[#6949c1] text-sm font-semibold"
+            {/* Input Field */}
+            <input
+                className={`
+          w-full pl-10 pr-10 py-2 rounded-3xl text-sm font-semibold
+           backdrop-blur-md 
+          text-[#6949c1] placeholder:text-gray-700
+          outline-none border-b-[2px] bg-gray-200
+           focus:bg-white focus:shadow-[0_3px_5px_rgba(105,73,193,0.6)]
+          transition-all duration-250 ease-in-out
+        `}
                 placeholder={placeholder}
                 type="text"
                 value={searchInput}
-                onChange={e => setSearchInput(e.target.value)}
+                onFocus={() => setIsFocused(true)}
+                onBlur={() => setIsFocused(false)}
+                onChange={(e) => setSearchInput(e.target.value)}
             />
-        </div>
 
-    )
+            {/* Clear Button */}
+            {showClear && (
+                <button
+                    onClick={handleClear}
+                    className="
+            absolute right-3 top-1/2 -translate-y-1/2
+            text-gray-500 hover:text-[#6949c1]
+            transition-all duration-300
+            p-1 rounded-full hover:bg-[#6949c1]/10
+          "
+                >
+                    <IoClose className="text-lg cursor-pointer" />
+                </button>
+            )}
+
+            {/* Glow line on focus */}
+            <div
+                className={`
+          absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] w-[0%]
+          bg-gradient-to-r from-[#6949c1] via-purple-500 to-blue-500
+          rounded-full transition-all duration-500 ease-in-out
+          ${isFocused ? "w-[93%]" : "w-0"}
+        `}
+            ></div>
+        </div>
+    );
 }
 
-export default SearchBar
+export default SearchBar;

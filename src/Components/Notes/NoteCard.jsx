@@ -39,7 +39,6 @@ function NoteCard({ note, isRecycleBin }) {
     return (
         <>
             <div className={`
-                    group
                     bg-white 
                     rounded-md 
                     shadow-[-1px_2px_4px_rgba(0,0,0,0.3)]
@@ -47,6 +46,7 @@ function NoteCard({ note, isRecycleBin }) {
                     relative 
                     overflow-hidden 
                     flex flex-col 
+                    items-center
                     transition-all duration-300 ease-in-out
                     cursor-pointer
                     hover:-translate-y-0.5
@@ -60,58 +60,86 @@ function NoteCard({ note, isRecycleBin }) {
                 `}
             >
 
-                {/* Tittle...... */}
+                {/* Title...... */}
 
-                <div className="flex justify-around items-center gap-2">
+                <div className="flex justify-between items-center gap-2 w-[96%]">
 
-                    {note?.isPinned ? <div className="bg-blue-500 w-0.5 h-0.5 rounded-full shadow-[0px_0px_6px_2.5px_rgba(0,0,255,1)]"></div>
-                        : <div className="bg-orange-500 w-0.5 h-0.5 rounded-full shadow-[0px_0px_6px_3px_rgba(255,0,0,1)]"></div>
-                    }
+                    <div className="flex items-center gap-3 w-[80%]">
+                        {note?.isPinned ? <div className="bg-blue-600 w-0.5 h-0.5 rounded-full shadow-[0px_0px_5px_2.5px_rgba(0,0,255,1)]"></div>
+                            : <div className="bg-orange-600 w-0.5 h-0.5 rounded-full shadow-[0px_0px_5px_2.5px_rgba(255,0,0,1)]"></div>
+                        }
 
-
-                    <h2 className="font-semibold text-gray-800 line-clamp-1 text-md w-[75%]">
-                        {note.title ? note.title : "Untitled Note"}
-                    </h2>
+                        <h2 className="font-semibold text-gray-800 line-clamp-1 text-md">
+                            {note.title ? note.title : "Untitled Note"}
+                        </h2>
+                    </div>
 
                     {note.isPinned && (
                         <SiPinboard
-                            className="text-lg sm:text-xl text-[#6949c1] transform scale-x-[-1] opacity-90 group-hover:opacity-100"
+                            className="text-lg sm:text-xl text-[#7d5dd3] transform scale-x-[-1] opacity-90 group-hover:opacity-100"
                         />
                     )}
 
                 </div>
 
                 {/* Content....... */}
-                <p className="p-2 pb-0 text-gray-700 text-sm truncate overflow-hidden text-ellipsis whitespace-normal line-clamp-4">
-                    {note.content || "No content available..."}
-                </p>
+                <div className="w-full h-full overflow-hidden">
+                    <p className="px-2 py-0.5 text-gray-700 text-sm truncate overflow-hidden text-ellipsis whitespace-normal line-clamp-4">
+                        {note.content || "No content available..."}
+                    </p>
+                </div>
 
                 {/* Footer Actions */}
 
                 <div className="flex items-center justify-between absolute bottom-3 left-3 right-3">
 
-                    {isRecycleBin && (
-                        <MdRestore
-                            onClick={handleRestoreClick}
-                            className="cursor-pointer text-lg sm:text-xl text-gray-600 hover:text-blue-600 hover:scale-110 transition-transform duration-200"
-                        />
-                    )}
+                    {isRecycleBin &&
+                        <div className="relative group">
+                            <MdRestore
+                                onClick={handleRestoreClick}
+                                className="cursor-pointer text-lg sm:text-xl text-gray-600 hover:text-blue-600 hover:scale-110 transition-transform duration-200"
+                            />
+                            <span
+                                className="absolute bottom-full left-1/1 -translate-x-1/2 mb-1.5 px-1 py-1 text-xs font-semibold text-white bg-[#7d5dd3] rounded-md shadow-[0px_0px_8px_2px_rgba(93,64,177,0.6)] opacity-0 scale-90 translate-y-1 group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 transition-all duration-300 ease-out pointer-events-none whitespace-nowrap"
+                            >
+                                Restore
+                            </span>
+                        </div>
+                    }
+
                     {!isRecycleBin && (
                         <span className="text-xs font-semibold text-gray-700">{FormatDateShort(note?.createdAt)}</span>
                     )}
 
                     <div className="flex items-center gap-4  absolute right-0 bottom-0">
                         {!isRecycleBin &&
-                            <MdEdit
-                                onClick={!isRecycleBin ? () => openForm(note) : undefined}
-                                className="cursor-pointer text-md text-gray-600 hover:text-green-600 hover:scale-110 transition-transform duration-200 ml-auto"
-                            />}
-                        <MdDeleteForever
-                            onClick={handleDeleteClick}
-                            className="cursor-pointer text-lg text-gray-600 hover:text-red-600 hover:scale-110 transition-transform duration-200 ml-auto"
-                        />
-                    </div>
 
+                            <div className="relative group">
+                                <MdEdit
+                                    onClick={() => openForm(note)}
+                                    className="cursor-pointer text-md text-gray-600 hover:text-green-600 hover:scale-110 transition-transform duration-200"
+                                />
+                                <span
+                                    className="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 px-1 py-1 text-xs font-semibold text-white bg-[#7d5dd3] rounded-md shadow-[0px_0px_8px_2px_rgba(93,64,177,0.6)] opacity-0 scale-90 translate-y-1 group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 transition-all duration-300 ease-out pointer-events-none whitespace-nowrap"
+                                >
+                                    Edit
+                                </span>
+                            </div>
+                        }
+
+                        <div className="relative group">
+                            <MdDeleteForever
+                                onClick={handleDeleteClick}
+                                className="cursor-pointer text-lg text-gray-600 hover:text-red-600 hover:scale-110 transition-transform duration-200 ml-auto"
+                            />
+                            <span
+                                className="absolute bottom-full left-1/12 -translate-x-1/2 mb-1.5 px-1 py-1 text-xs font-semibold text-white bg-[#7d5dd3] rounded-md shadow-[0px_0px_8px_2px_rgba(93,64,177,0.6)] opacity-0 scale-90 translate-y-1 group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 transition-all duration-300 ease-out pointer-events-none whitespace-nowrap"
+                            >
+                                Delete
+                            </span>
+                        </div>
+
+                    </div>
                 </div>
             </div>
 
