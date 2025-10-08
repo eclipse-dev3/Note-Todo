@@ -72,7 +72,7 @@ function NoteForm({ selectedNote, closeForm }) {
 
             <RiCloseFill
                 onClick={closeForm}
-                className="absolute top-3 right-3 cursor-pointer text-3xl text-gray-900 hover:text-red-500 transition-colors"
+                className="absolute top-3 right-3 hover:scale-110 duration-200 cursor-pointer text-3xl text-gray-900 hover:text-red-500 transition-all"
             />
 
             <div className="relative bg-white w-[85%] max-w-2xl h-[80%] rounded-xl shadow-2xl overflow-hidden flex flex-col">
@@ -80,11 +80,11 @@ function NoteForm({ selectedNote, closeForm }) {
                 <div className="flex items-center justify-between p-2 border-b border-gray-200">
                     <IoChevronBack
                         onClick={closeForm}
-                        className="cursor-pointer text-2xl text-gray-900 hover:text-gray-500 transition-colors"
+                        className="cursor-pointer hover:scale-110 duration-200 text-2xl text-gray-900 hover:text-gray-500 transition-all"
                     />
                     <GiCheckMark
                         onClick={handleSave}
-                        className="cursor-pointer text-2xl text-green-600 hover:text-green-800 transition-colors"
+                        className="cursor-pointer hover:scale-110 duration-200 text-2xl text-green-600 hover:text-green-800 transition-all"
                     />
                 </div>
 
@@ -101,7 +101,7 @@ function NoteForm({ selectedNote, closeForm }) {
                     <div className="relative ml-2">
                         <BsThreeDotsVertical
                             onClick={handleDetailsToggle}
-                            className="cursor-pointer text-xl text-gray-600 hover:text-gray-900 transition-colors"
+                            className="cursor-pointer text-xl hover:scale-110 duration-200 text-gray-600 hover:text-gray-900 "
                         />
                         {isDetailsOpen && (
                             <NoteDetails

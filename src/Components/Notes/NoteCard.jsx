@@ -1,9 +1,10 @@
 
 import { useState } from "react";
 import { SiPinboard } from "react-icons/si";
-import { MdDeleteForever, MdRestore } from "react-icons/md";
+import { MdDeleteForever, MdRestore, MdEdit } from "react-icons/md";
 import { UseNote } from "../../Context/NotesContext";
 import ConfirmModal from "../Common/Confirm";
+import { FormatDateShort } from "../Common/FormateDate";
 
 function NoteCard({ note, isRecycleBin }) {
     const { openForm, softDelNote, permanentDelNote, restoreNote } = UseNote();
@@ -37,13 +38,11 @@ function NoteCard({ note, isRecycleBin }) {
 
     return (
         <>
-            <div
-                onClick={!isRecycleBin ? () => openForm(note) : undefined}
-                className={`
+            <div className={`
                     group
                     bg-white 
-                    rounded-sm 
-                    shadow-[-1px_4px_4px_rgba(0,0,0,0.2)]
+                    rounded-md 
+                    shadow-[-1px_2px_4px_rgba(0,0,0,0.3)]
                     p-2
                     relative 
                     overflow-hidden 
@@ -55,41 +54,64 @@ function NoteCard({ note, isRecycleBin }) {
                     sm:h-[120px] md:h-[150px] lg:h-[170px]
                     sm:min-w-[100px] md:min-w-[110px] lg:min-w-[140px] xl:min-w-[170px]
                     ${!isRecycleBin
-                        ? " hover:bg-blue-50"
-                        : "opacity-80 cursor-not-allowed"
-                    }
+                    ? " hover:bg-blue-50"
+                    : "opacity-80 cursor-not-allowed"
+                }
                 `}
             >
-                {/* Header */}
-                <div className="flex justify-between items-start">
-                    <h2 className="font-semibold text-gray-900 line-clamp-1 sm:text-lg w-[85%]">
+
+                {/* Tittle...... */}
+
+                <div className="flex justify-around items-center gap-2">
+
+                    {note?.isPinned ? <div className="bg-blue-500 w-0.5 h-0.5 rounded-full shadow-[0px_0px_6px_2.5px_rgba(0,0,255,1)]"></div>
+                        : <div className="bg-orange-500 w-0.5 h-0.5 rounded-full shadow-[0px_0px_6px_3px_rgba(255,0,0,1)]"></div>
+                    }
+
+
+                    <h2 className="font-semibold text-gray-800 line-clamp-1 text-md w-[75%]">
                         {note.title ? note.title : "Untitled Note"}
                     </h2>
 
                     {note.isPinned && (
                         <SiPinboard
-                            className="text-lg sm:text-xl text-blue-500 transform scale-x-[-1] opacity-90 group-hover:opacity-100"
+                            className="text-lg sm:text-xl text-[#6949c1] transform scale-x-[-1] opacity-90 group-hover:opacity-100"
                         />
                     )}
+
                 </div>
 
-                {/* Content */}
-                <p className="p-1 text-gray-700 text-sm truncate overflow-hidden text-ellipsis whitespace-normal line-clamp-4">
+                {/* Content....... */}
+                <p className="p-2 pb-0 text-gray-700 text-sm truncate overflow-hidden text-ellipsis whitespace-normal line-clamp-4">
                     {note.content || "No content available..."}
                 </p>
 
                 {/* Footer Actions */}
-                <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between">
+
+                <div className="flex items-center justify-between absolute bottom-3 left-3 right-3">
+
                     {isRecycleBin && (
                         <MdRestore
                             onClick={handleRestoreClick}
                             className="cursor-pointer text-lg sm:text-xl text-gray-600 hover:text-blue-600 hover:scale-110 transition-transform duration-200"
                         />
                     )}
-                    <MdDeleteForever
-                        onClick={handleDeleteClick}
-                        className="cursor-pointer text-lg sm:text-xl text-gray-600 hover:text-red-600 hover:scale-110 transition-transform duration-200 ml-auto"
-                    />
+                    {!isRecycleBin && (
+                        <span className="text-xs font-semibold text-gray-700">{FormatDateShort(note?.createdAt)}</span>
+                    )}
+
+                    <div className="flex items-center gap-4  absolute right-0 bottom-0">
+                        {!isRecycleBin &&
+                            <MdEdit
+                                onClick={!isRecycleBin ? () => openForm(note) : undefined}
+                                className="cursor-pointer text-md text-gray-600 hover:text-green-600 hover:scale-110 transition-transform duration-200 ml-auto"
+                            />}
+                        <MdDeleteForever
+                            onClick={handleDeleteClick}
+                            className="cursor-pointer text-lg text-gray-600 hover:text-red-600 hover:scale-110 transition-transform duration-200 ml-auto"
+                        />
+                    </div>
+
                 </div>
             </div>
 

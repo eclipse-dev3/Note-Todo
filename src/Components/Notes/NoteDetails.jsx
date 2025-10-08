@@ -7,6 +7,7 @@ import ConfirmModal from "../Common/Confirm";
 import { useState } from "react";
 import { UseNote } from "../../Context/NotesContext";
 import { jsPDF } from "jspdf";
+import { FormatDate } from "../Common/FormateDate";
 
 function NoteDetails({ note, softDelete }) {
 
@@ -26,20 +27,6 @@ function NoteDetails({ note, softDelete }) {
   const handlePinToggle = (e) => {
     e.stopPropagation();
     togglePin(note.id);
-  };
-
-  const handleDownloadTxt = (note) => {
-    const element = document.createElement("a");
-    const fileContent = `Title: ${note.title}\n\n${note.content}\n\nCreated At: ${note.createdAt}\nLast Updated: ${note.lastUpdateAt}`;
-    const blob = new Blob([fileContent], { type: "text/plain" });
-    const fileUrl = URL.createObjectURL(blob);
-
-    element.href = fileUrl;
-    element.download = `${note.title || "Untitled Note"}.txt`;
-    document.body.appendChild(element);
-    element.click();
-    document.body.removeChild(element);
-    URL.revokeObjectURL(fileUrl);
   };
 
   const handleDownloadPdf = (note) => {
@@ -69,22 +56,17 @@ function NoteDetails({ note, softDelete }) {
 
         {/* Download Buttons */}
         <p className="text-sm text-gray-900 font-bold flex items-center gap-1.5 cursor-pointer hover:bg-gray-300 rounded h-10 px-1.5 transition-all duration-300"
-          onClick={() => handleDownloadTxt(note)}>
-          <HiOutlineDownload className="text-black text-lg" /> Download TXT
-        </p>
-
-        <p className="text-sm text-gray-900 font-bold flex items-center gap-1.5 cursor-pointer hover:bg-gray-300 rounded h-10 px-1.5 transition-all duration-300"
           onClick={() => handleDownloadPdf(note)}>
-          <HiOutlineDownload className="text-black text-lg" /> Download PDF
+          <HiOutlineDownload className="text-black text-lg" /> Download
         </p>
 
         {/* Created / Updated */}
         <p className="text-sm text-gray-700 font-bold flex flex-col hover:bg-gray-300 rounded h-10 px-1.5 transition-all duration-300">
-          Created at: <span className="font-normal text-[11px]">{note?.createdAt}</span>
+          Created at: <span className="font-normal text-[11px]">{FormatDate(note?.createdAt)}</span>
         </p>
 
         <p className="text-sm text-gray-700 font-bold flex flex-col hover:bg-gray-300 rounded h-10 px-1.5 transition-all duration-300">
-          Last updated at: <span className="font-normal text-[11px]">{note?.lastUpdateAt}</span>
+          Last updated at: <span className="font-normal text-[11px]">{FormatDate(note?.lastUpdateAt)}</span>
         </p>
 
         {/* Footer Actions */}

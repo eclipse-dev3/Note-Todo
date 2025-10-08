@@ -89,7 +89,7 @@ function NoteApp() {
     const handleSelectFolder = (folderLabel, FolderIcon) => {
         setActiveFolder(folderLabel);
         setActiveFolderView(
-            <div className="flex items-center gap-2 font-bold text-lg">
+            <div className="flex items-center gap-2 justify-center">
                 {FolderIcon} {folderLabel}
             </div>
         );
@@ -98,11 +98,11 @@ function NoteApp() {
     return (
         <NoteContext.Provider value={{ notes, addNote, UpdateNote, softDelNote, permanentDelNote, recycleBinNotes, togglePin, restoreNote, openForm, closeForm }}>
 
-            <div className=" relative w-[50%] h-[93vh] bg-gray-200 rounded-lg p-2 pb-9.5 flex flex-col items-center gap-2 overflow-hidden">
+            <div className=" relative w-[50%] h-[93vh] bg-gray-200 rounded-md p-2 pb-9.5 flex flex-col items-center gap-2 overflow-hidden">
 
                 <SearchBar placeholder={'Search notes...'} searchInput={searchInput} setSearchInput={setSearchInput} />
 
-                <div className="font-bold text-lg duration-1000 animate-fadeIn">{activeFolderView}</div>
+                <div className=" flex items-center justify-center text-xs font-semibold h-6 text-white rounded pr-3 pl-3 cursor-pointer bg-[#7d5dd3]">{activeFolderView}</div>
 
                 <NoteList activeFolder={activeFolder} searchInput={debouncedSearch} />
 
@@ -115,7 +115,7 @@ function NoteApp() {
 
                 {!isSideBarOpen ?
                     <FaBars onClick={toggleSideBar}
-                        className=" absolute top-3.5 left-3 text-xl text-gray-900 cursor-pointer animate-fadeIn" />
+                        className=" absolute top-3.5 left-3 text-xl text-[#6949c1] cursor-pointer animate-fadeIn" />
                     : <RiCloseFill
                         onClick={toggleSideBar}
                         className="z-1000 absolute top-2 left-1.5 text-3xl font-bold text-white cursor-pointer animate-fadeIn" />}
@@ -124,7 +124,7 @@ function NoteApp() {
 
             </div>
 
-        </NoteContext.Provider>
+        </NoteContext.Provider >
     )
 }
 
