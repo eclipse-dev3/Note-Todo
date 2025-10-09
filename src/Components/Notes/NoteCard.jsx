@@ -97,7 +97,7 @@ function NoteCard({ note, isRecycleBin }) {
                         <div className="relative group">
                             <MdRestore
                                 onClick={handleRestoreClick}
-                                className="cursor-pointer text-lg sm:text-xl text-gray-600 hover:text-blue-600 hover:scale-110 transition-transform duration-200"
+                                className="cursor-pointer text-lg sm:text-xl text-gray-600 hover:text-blue-600 hover:scale-115 transition-transform duration-200"
                             />
                             <span
                                 className="absolute bottom-full left-1/1 -translate-x-1/2 mb-1.5 px-1 py-1 text-xs font-semibold text-white bg-[#7d5dd3] rounded-md shadow-[0px_0px_8px_2px_rgba(93,64,177,0.6)] opacity-0 scale-90 translate-y-1 group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 transition-all duration-300 ease-out pointer-events-none whitespace-nowrap"
@@ -117,7 +117,7 @@ function NoteCard({ note, isRecycleBin }) {
                             <div className="relative group">
                                 <MdEdit
                                     onClick={() => openForm(note)}
-                                    className="cursor-pointer text-md text-gray-600 hover:text-green-600 hover:scale-110 transition-transform duration-200"
+                                    className="cursor-pointer text-md text-gray-600 hover:text-green-600 hover:scale-120 transition-transform duration-200"
                                 />
                                 <span
                                     className="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 px-1 py-1 text-xs font-semibold text-white bg-[#7d5dd3] rounded-md shadow-[0px_0px_8px_2px_rgba(93,64,177,0.6)] opacity-0 scale-90 translate-y-1 group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 transition-all duration-300 ease-out pointer-events-none whitespace-nowrap"
@@ -130,7 +130,7 @@ function NoteCard({ note, isRecycleBin }) {
                         <div className="relative group">
                             <MdDeleteForever
                                 onClick={handleDeleteClick}
-                                className="cursor-pointer text-lg text-gray-600 hover:text-red-600 hover:scale-110 transition-transform duration-200 ml-auto"
+                                className="cursor-pointer text-lg text-gray-600 hover:text-red-600 hover:scale-115 transition-transform duration-200 ml-auto"
                             />
                             <span
                                 className="absolute bottom-full left-1/12 -translate-x-1/2 mb-1.5 px-1 py-1 text-xs font-semibold text-white bg-[#7d5dd3] rounded-md shadow-[0px_0px_8px_2px_rgba(93,64,177,0.6)] opacity-0 scale-90 translate-y-1 group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 transition-all duration-300 ease-out pointer-events-none whitespace-nowrap"

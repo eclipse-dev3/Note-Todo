@@ -98,7 +98,7 @@ function NoteApp() {
     return (
         <NoteContext.Provider value={{ notes, addNote, UpdateNote, softDelNote, permanentDelNote, recycleBinNotes, togglePin, restoreNote, openForm, closeForm }}>
 
-            <div className=" relative w-[50%] h-[93vh] bg-gray-200 rounded-md p-2 pb-9.5 flex flex-col items-center gap-2 overflow-hidden">
+            <div className=" relative w-[50%] h-[93vh] bg-gray-100 rounded-md p-2 pb-9.5 flex flex-col items-center gap-2 overflow-hidden">
 
                 <SearchBar placeholder={'Search notes...'} searchInput={searchInput} setSearchInput={setSearchInput} />
 
@@ -120,7 +120,7 @@ function NoteApp() {
                         onClick={toggleSideBar}
                         className="z-1000 absolute top-2 left-1.5 text-3xl font-bold text-white cursor-pointer animate-fadeIn" />}
 
-                <SideBar isOpen={isSideBarOpen} onSelectFolder={handleSelectFolder} />
+                <SideBar isOpen={isSideBarOpen} onSelectFolder={handleSelectFolder} notes={notes} />
 
             </div>
 

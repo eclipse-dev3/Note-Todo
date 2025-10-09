@@ -32,7 +32,7 @@ function SearchBar({ placeholder, searchInput, setSearchInput }) {
           w-full pl-10 pr-10 py-2 rounded-3xl text-sm font-semibold
            backdrop-blur-md 
           text-[#6949c1] placeholder:text-gray-700
-          outline-none border-b-[2px] bg-gray-200
+          outline-none border-b-[2px] bg-gray-100
            focus:bg-white focus:shadow-[0_3px_5px_rgba(105,73,193,0.6)]
           transition-all duration-250 ease-in-out
         `}

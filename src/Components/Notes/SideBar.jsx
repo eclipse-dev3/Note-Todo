@@ -7,14 +7,19 @@ import { FaLinkedin, FaSquareXTwitter } from "react-icons/fa6";
 import { FaGithubSquare, FaInstagramSquare } from "react-icons/fa";
 import Profile from "../../assets/profile.png"
 
-function SideBar({ isOpen, onSelectFolder }) {
+function SideBar({ isOpen, onSelectFolder, notes }) {
     const [activeFolder, setActiveFolder] = useState("All Notes");
 
+    const allNotesCount = notes.filter(note => !note.isDeleted).length;
+    const pinnedNotesCount = notes.filter(note => note.isPinned && !note.isDeleted).length;
+    const lockedNotesCount = notes.filter(note => note.isLocked && !note.isDeleted).length;
+    const recycleBinCount = notes.filter(note => note.isDeleted).length;
+
     const keys = [
-        { id: 1, label: 'All Notes', icon: <LuNotebook /> },
-        { id: 2, label: 'Pinned Notes', icon: <TiPin className="text-xl" /> },
-        { id: 3, label: 'Locked Notes', icon: <TiLockClosed className="text-xl" /> },
-        { id: 4, label: 'Recycle Bin', icon: <HiOutlineTrash className="text-xl" /> },
+        { id: 1, label: 'All Notes', icon: <LuNotebook />, count: allNotesCount, },
+        { id: 2, label: 'Pinned Notes', icon: <TiPin className="text-xl" />, count: pinnedNotesCount },
+        { id: 3, label: 'Locked Notes', icon: <TiLockClosed className="text-xl" />, count: lockedNotesCount },
+        { id: 4, label: 'Recycle Bin', icon: <HiOutlineTrash className="text-xl" />, count: recycleBinCount },
     ];
 
     const displayFolder = (label, icon) => (e) => {
@@ -23,8 +28,9 @@ function SideBar({ isOpen, onSelectFolder }) {
         onSelectFolder(label, icon);
     };
 
+
     return (
-        <div className={`absolute top-0 left-0 w-[30%] h-[85vh] bg-[#7d5dd3] rounded-tr-md rounded-br-md p-4 text-white overflow-hidden shadow-lg transition-transform duration-300 ${isOpen ? "translate-x-0" : "-translate-x-full"}`}>
+        <div className={`absolute top-0 left-0 w-[33%] h-[85vh] bg-[#7d5dd3] rounded-tr-md rounded-br-md py-4 px-3 text-white overflow-hidden shadow-lg transition-transform duration-300 ${isOpen ? "translate-x-0" : "-translate-x-full"}`}>
 
             {/* three glowing dots */}
             <div className="flex gap-4.5 absolute right-5">
@@ -35,16 +41,19 @@ function SideBar({ isOpen, onSelectFolder }) {
             </div>
 
             <ul className="mt-13">
-                {keys.map(({ id, label, icon }) => {
+                {keys.map(({ id, label, icon, count }) => {
                     const isActive = label === activeFolder;
                     return (
                         <li
                             key={id}
                             onClick={displayFolder(label, icon)}
-                            className={`mb-2 p-3 flex items-center gap-3 rounded cursor-pointer transition-colors duration-300
+                            className={`mb-2 p-3 flex items-center justify-between rounded cursor-pointer transition-colors duration-300
                                  ${isActive ? "bg-[#5e40b1] text-white" : "text-white hover:bg-[#5e40b1] hover:text-white"}`}
                         >
-                            {icon} {label}
+                            <span className="flex items-center gap-2">
+                                {icon} {label}
+                            </span>
+                            <span className="text-xs font-semibold">{count}</span>
                         </li>
                     );
                 })}
