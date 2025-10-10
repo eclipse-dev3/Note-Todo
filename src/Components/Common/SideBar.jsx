@@ -65,7 +65,7 @@ function SideBar({ isOpen, onSelectFolder, notes }) {
             </ul >
 
             {/* Footer links */}
-            < ul className="absolute bottom-2 left-0 w-full border-t border-white/30" >
+            < ul className="absolute bottom-2 left-0 max-[550px]:bottom-5 w-full border-t border-white/30" >
                 <li className="p-3 flex items-center justify-evenly gap-2">
                     <span className="text-sm font-bold flex flex-col">Contact</span>
                     <a href="https://gaurav-kumar-03.vercel.app" target="_blank" className="relative group">
