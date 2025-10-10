@@ -4,7 +4,7 @@ import { HiOutlineTrash } from "react-icons/hi2";
 import { useState } from "react";
 import { FaLinkedin, FaSquareXTwitter } from "react-icons/fa6";
 import { FaGithubSquare, FaInstagramSquare } from "react-icons/fa";
-import profile from "../../assets/profile.png";
+import profile from "/src/assets/profile.png";
 
 function SideBar({ isOpen, onSelectFolder, notes }) {
     const [activeFolder, setActiveFolder] = useState("All Notes");
