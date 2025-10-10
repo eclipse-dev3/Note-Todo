@@ -1,9 +1,13 @@
 body {
-  padding: 2px 5px;
+  padding: .5px 5px;
   background-color: rgb(255, 255, 255);
   /* font-family: 'Roboto', sans-serif; */
+}
 
-  /* font-family: sans-serif; */
+@media (max-width: 1024px) {
+  body {
+    padding: 0;
+  }
 }
 
 /* Hide scrollbar globally or for a class */

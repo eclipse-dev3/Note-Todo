@@ -1,4 +1,3 @@
-
 import { IoChevronBack } from "react-icons/io5";
 import { GiCheckMark } from "react-icons/gi";
 import { RiCloseFill } from "react-icons/ri";
@@ -68,40 +67,42 @@ function NoteForm({ selectedNote, closeForm }) {
     };
 
     return (
-        <div className="bg-black/40 w-full h-full absolute top-0 left-0 z-50 flex items-center justify-center animate-fadeIn">
+        <div className="absolute inset-0 top-0 left-0 w-full h-full bg-black/30 backdrop-blur-xs flex items-center justify-center z-50 animate-fadeIn">
 
+            {/* Close Button */}
             <RiCloseFill
                 onClick={closeForm}
-                className="absolute top-3 right-3 hover:scale-110 duration-200 cursor-pointer text-3xl text-gray-900 hover:text-red-500 transition-all"
+                className="absolute top-3 right-3 hover:scale-110 duration-200 cursor-pointer text-3xl text-gray-700 hover:text-red-500 transition-all"
             />
 
-            <div className="relative bg-white w-[85%] max-w-2xl h-[80%] rounded-xl shadow-2xl overflow-hidden flex flex-col">
-
+            <div className="relative bg-white backdrop-blur-xl border border-gray-200 w-[85%] max-w-2xl h-[80%] rounded-2xl shadow-xl overflow-hidden flex flex-col transition-all duration-300">
+                {/* Top Bar */}
                 <div className="flex items-center justify-between p-2 border-b border-gray-200">
                     <IoChevronBack
                         onClick={closeForm}
-                        className="cursor-pointer hover:scale-110 duration-200 text-2xl text-gray-900 hover:text-gray-500 transition-all"
+                        className="cursor-pointer hover:scale-110 duration-200 text-2xl text-gray-700 hover:text-gray-500 transition-all"
                     />
                     <GiCheckMark
                         onClick={handleSave}
-                        className="cursor-pointer hover:scale-110 duration-200 text-2xl text-green-600 hover:text-green-800 transition-all"
+                        className="cursor-pointer hover:scale-110 duration-200 text-2xl text-[#6949c1] hover:text-purple-700 transition-all"
                     />
                 </div>
 
-                <div className="flex items-center justify-between px-4 ">
+                {/* Title + Menu */}
+                <div className="flex items-center justify-between px-4 py-2">
                     <input
                         type="text"
                         placeholder="Title..."
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
-                        className="w-full px-3 py-1.5 border-b-2 border-gray-300 outline-none focus:border-blue-500 text-lg font-semibold placeholder-gray-400 rounded-sm transition-all"
+                        className="w-full bg-transparent px-3 py-1.5 border-b-2 border-gray-300 outline-none focus:border-[#6949c1] text-lg font-semibold placeholder-gray-400 transition-all duration-300"
                         autoFocus
                         spellCheck="false"
                     />
                     <div className="relative ml-2">
                         <BsThreeDotsVertical
                             onClick={handleDetailsToggle}
-                            className="cursor-pointer text-xl hover:scale-110 duration-200 text-gray-600 hover:text-gray-900 "
+                            className="cursor-pointer text-xl hover:scale-110 duration-200 text-gray-600 hover:text-gray-900"
                         />
                         {isDetailsOpen && (
                             <NoteDetails
@@ -113,12 +114,13 @@ function NoteForm({ selectedNote, closeForm }) {
                     </div>
                 </div>
 
+                {/* Content Area */}
                 <textarea
                     placeholder="Take a note..."
                     value={content}
                     spellCheck="false"
                     onChange={(e) => setContent(e.target.value)}
-                    className="overflow-y-auto custom-scrollbar flex-1 mt-2 mb-3 ml-4 mr-4 p-3 border border-gray-200 rounded-md resize-none outline-none shadow-inner focus:ring-1 focus:ring-blue-200"
+                    className="flex-1 m-4 mt-2 p-4 rounded-xl bg-white/50 border border-gray-200 outline-none shadow-inner resize-none focus:ring-2 focus:ring-[#6949c1]/40 transition-all duration-300"
                 ></textarea>
             </div>
         </div>

@@ -19,7 +19,7 @@ function NoteList({ activeFolder, searchInput }) {
 
     if (filteredNotes.length === 0) {
         return (
-            <div className="flex flex-col items-center justify-center h-[60vh] text-gray-600 animate-fadeIn">
+            <div className="w-full flex flex-col items-center justify-center h-[60vh] text-gray-600 animate-fadeIn">
                 <LuInbox className="text-6xl mb-3 text-gray-500" />
                 <p className="font-semibold text-lg">No notes found in {activeFolder}.</p>
                 <p className="text-sm text-gray-400 mt-1">Try creating or restoring some notes.</p>
@@ -30,7 +30,7 @@ function NoteList({ activeFolder, searchInput }) {
     return (
 
         <div key={activeFolder}
-            className="w-full grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 gap-2 p-1 overflow-y-auto rounded-md animate-fadeIn scrollbar-hide">
+            className="w-full grid grid-cols-3 max-md:grid-cols-3 max-lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-5 gap-2.5 p-2 max-lg:p-4 overflow-y-auto rounded-md animate-fadeIn scrollbar-hide">
 
             {filteredNotes.map(note => (
                 <NoteCard
@@ -39,6 +39,7 @@ function NoteList({ activeFolder, searchInput }) {
                     isRecycleBin={activeFolder === "Recycle Bin"}
                 />
             ))}
+
         </div>
 
     );

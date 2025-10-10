@@ -13,8 +13,7 @@ function SearchBar({ placeholder, searchInput, setSearchInput }) {
 
     return (
         <div
-            className={`
-        relative w-[85%] mx-auto transition-all duration-500 ease-in-out
+            className={`relative w-[60%] mx-auto transition-all duration-500 ease-in-out max-lg:mb-1 max-sm:w-[70%]
         ${isFocused ? "scale-[1.03]" : "scale-100"}
       `}
         >
@@ -65,7 +64,7 @@ function SearchBar({ placeholder, searchInput, setSearchInput }) {
           absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] w-[0%]
           bg-gradient-to-r from-[#6949c1] via-purple-500 to-blue-500
           rounded-full transition-all duration-500 ease-in-out
-          ${isFocused ? "w-[93%]" : "w-0"}
+          ${isFocused ? "w-[91%]" : "w-0"}
         `}
             ></div>
         </div>

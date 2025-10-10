@@ -1,0 +1,90 @@
+import { LuNotebook } from "react-icons/lu";
+import { TiLockClosed, TiPin } from "react-icons/ti";
+import { HiOutlineTrash } from "react-icons/hi2";
+import { useState } from "react";
+import { FaLinkedin, FaSquareXTwitter } from "react-icons/fa6";
+import { FaGithubSquare, FaInstagramSquare } from "react-icons/fa";
+import Profile from "../../assets/profile.png";
+
+function SideBar({ isOpen, onSelectFolder, notes }) {
+    const [activeFolder, setActiveFolder] = useState("All Notes");
+
+    const allNotesCount = notes.filter(note => !note.isDeleted).length;
+    const pinnedNotesCount = notes.filter(note => note.isPinned && !note.isDeleted).length;
+    const lockedNotesCount = notes.filter(note => note.isLocked && !note.isDeleted).length;
+    const recycleBinCount = notes.filter(note => note.isDeleted).length;
+
+    const keys = [
+        { id: 1, label: 'All Notes', icon: <LuNotebook />, count: allNotesCount },
+        { id: 2, label: 'Pinned Notes', icon: <TiPin className="text-xl" />, count: pinnedNotesCount },
+        { id: 3, label: 'Locked Notes', icon: <TiLockClosed className="text-xl" />, count: lockedNotesCount },
+        { id: 4, label: 'Recycle Bin', icon: <HiOutlineTrash className="text-xl" />, count: recycleBinCount },
+    ];
+
+    const displayFolder = (label, icon) => (e) => {
+        e.stopPropagation();
+        setActiveFolder(label);
+        onSelectFolder(label, icon);
+    };
+
+    return (
+        <div
+            className={`absolute lg:static top-0 left-0 h-[95vh] w-[70%] sm:w-[50%] md:w-[40%] lg:w-[20%]
+            bg-[#7d5dd3] text-white rounded-tl-md rounded-bl-md py-4 px-3 overflow-hidden shadow-lg
+            transform transition-transform duration-500 ease-in-out z-10
+             max-lg:rounded-tl-none max-lg:rounded-bl-none max-lg:rounded-tr-md max-lg:rounded-br-md
+            ${isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}`}
+
+        >
+
+            {/* Glowing dots */}
+            <div className="flex gap-4.5 absolute right-5" >
+                <div className="bg-red-600 w-0.5 h-0.5 rounded-full shadow-[0px_0px_6px_4px_rgba(255,0,0,1)]"></div>
+                <div className="bg-green-400 w-0.5 h-0.5 rounded-full shadow-[0px_0px_6px_4px_rgba(0,255,0,1)]"></div>
+                <div className="bg-blue-700 w-0.5 h-0.5 rounded-full shadow-[0px_0px_6px_4px_rgba(0,0,255,1)]"></div>
+            </div >
+
+            {/* Sidebar menu */}
+            <ul className="mt-15" >
+                {
+                    keys.map(({ id, label, icon, count }) => {
+                        const isActive = label === activeFolder;
+                        return (
+                            <li
+                                key={id}
+                                onClick={displayFolder(label, icon)}
+                                className={`mb-2 p-3 flex items-center justify-between rounded cursor-pointer
+                            transition-colors duration-300 ${isActive ? "bg-[#5e40b1]" : "hover:bg-[#5e40b1]"}`}
+                            >
+                                <span className="flex items-center gap-2">{icon} {label}</span>
+                                <span className="text-xs font-semibold">{count}</span>
+                            </li>
+                        );
+                    })
+                }
+            </ul >
+
+            {/* Footer links */}
+            < ul className="absolute bottom-2 left-0 w-full border-t border-white/30" >
+                <li className="p-3 flex items-center justify-evenly gap-2">
+                    <span className="text-sm font-bold flex flex-col">Contact</span>
+                    <a href="https://gaurav-kumar-03.vercel.app" target="_blank" className="relative group">
+                        <img src={Profile} alt="Profile" width={45} className="hover:scale-110 duration-200 p-0.5 bg-blue-900 rounded-full" />
+                        <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 text-xs font-semibold text-white bg-[#5e40b1] rounded-md shadow-[0px_0px_8px_2px_rgba(93,64,177,0.8)] opacity-0 group-hover:opacity-100 transition-all duration-300">
+                            Portfolio
+                        </span>
+                    </a>
+                </li>
+
+                <li className="flex gap-4 pb-3 pt-2 justify-center">
+                    <a href="https://www.linkedin.com/in/gaurav-kumar-5b678437a/" target="_blank"><FaLinkedin className="hover:text-[#0077b5] hover:bg-white rounded" /></a>
+                    <a href="https://github.com/eclipse-dev3" target="_blank"><FaGithubSquare className="hover:text-[#222] hover:bg-white rounded" /></a>
+                    <a href="https://www.instagram.com/itseclipsedev/" target="_blank"><FaInstagramSquare className="hover:text-[#e1306c] hover:bg-white rounded" /></a>
+                    <a href="https://x.com/eclipse_devX" target="_blank"><FaSquareXTwitter className="hover:text-[#222] hover:bg-white rounded" /></a>
+                </li>
+            </ul >
+        </div >
+    );
+}
+
+export default SideBar;

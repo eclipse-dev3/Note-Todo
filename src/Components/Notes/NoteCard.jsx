@@ -50,8 +50,8 @@ function NoteCard({ note, isRecycleBin }) {
                     transition-all duration-300 ease-in-out
                     cursor-pointer
                     hover:-translate-y-0.5
-                    h-[100px]
-                    sm:h-[120px] md:h-[150px] lg:h-[170px]
+                    h-[130px]
+                   xs:h-[140px] sm:h-[150px] md:h-[170px]  2xl:h-[200px]
                     sm:min-w-[100px] md:min-w-[110px] lg:min-w-[140px] xl:min-w-[170px]
                     ${!isRecycleBin
                     ? " hover:bg-blue-50"
@@ -69,7 +69,7 @@ function NoteCard({ note, isRecycleBin }) {
                             : <div className="bg-orange-600 w-0.5 h-0.5 rounded-full shadow-[0px_0px_5px_2.5px_rgba(255,0,0,1)]"></div>
                         }
 
-                        <h2 className="font-semibold text-gray-800 line-clamp-1 text-md">
+                        <h2 className="font-semibold text-gray-800 line-clamp-1 text-md  max-[500px]:text-sm">
                             {note.title ? note.title : "Untitled Note"}
                         </h2>
                     </div>
@@ -84,7 +84,7 @@ function NoteCard({ note, isRecycleBin }) {
 
                 {/* Content....... */}
                 <div className="w-full h-full overflow-hidden">
-                    <p className="px-2 py-0.5 text-gray-700 text-sm truncate overflow-hidden text-ellipsis whitespace-normal line-clamp-4">
+                    <p className="px-2 max-[500px]:px-1 py-0.5 text-gray-700 text-sm max-sm:text-xs truncate overflow-hidden text-ellipsis whitespace-normal line-clamp-4 max-sm:line-clamp-3">
                         {note.content || "No content available..."}
                     </p>
                 </div>
@@ -108,13 +108,13 @@ function NoteCard({ note, isRecycleBin }) {
                     }
 
                     {!isRecycleBin && (
-                        <span className="text-xs font-semibold text-gray-700">{FormatDateShort(note?.createdAt)}</span>
+                        <span className="text-xs max-[500px]:text-[9px] font-semibold text-gray-700">{FormatDateShort(note?.createdAt)}</span>
                     )}
 
-                    <div className="flex items-center gap-4  absolute right-0 bottom-0">
+                    <div className="flex items-center gap-6  absolute right-0 bottom-0">
                         {!isRecycleBin &&
 
-                            <div className="relative group">
+                            <div className="relative group max-[550px]:hidden">
                                 <MdEdit
                                     onClick={() => openForm(note)}
                                     className="cursor-pointer text-md text-gray-600 hover:text-green-600 hover:scale-120 transition-transform duration-200"
@@ -141,6 +141,7 @@ function NoteCard({ note, isRecycleBin }) {
 
                     </div>
                 </div>
+
             </div>
 
             {/* Delete Confirmation */}
