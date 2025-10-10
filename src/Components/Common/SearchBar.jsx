@@ -13,7 +13,7 @@ function SearchBar({ placeholder, searchInput, setSearchInput }) {
 
     return (
         <div
-            className={`relative w-[60%] mx-auto transition-all duration-500 ease-in-out max-lg:mb-1 max-sm:w-[70%]
+            className={`relative w-[60%] mx-auto transition-all duration-500 ease-in-out max-lg:mb-1 max-sm:w-[75%]
         ${isFocused ? "scale-[1.03]" : "scale-100"}
       `}
         >
