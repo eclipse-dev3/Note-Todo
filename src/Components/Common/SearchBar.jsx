@@ -61,10 +61,10 @@ function SearchBar({ placeholder, searchInput, setSearchInput }) {
             {/* Glow line on focus */}
             <div
                 className={`
-          absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] w-[0%]
-          bg-gradient-to-r from-[#6949c1] via-purple-500 to-blue-500
+          absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] w-[0%] 
+          bg-gradient-to-r from-[#6949c1] via-blue-400 to-blue-600
           rounded-full transition-all duration-500 ease-in-out
-          ${isFocused ? "w-[91%]" : "w-0"}
+          ${isFocused ? "w-[94%] max-[500px]:w-[87%]" : "w-0"}
         `}
             ></div>
         </div>

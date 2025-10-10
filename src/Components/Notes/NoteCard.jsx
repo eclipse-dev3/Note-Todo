@@ -38,27 +38,34 @@ function NoteCard({ note, isRecycleBin }) {
 
     return (
         <>
-            <div className={`
-                    bg-white 
-                    rounded-md 
-                    shadow-[-1px_2px_4px_rgba(0,0,0,0.3)]
-                    p-2
-                    relative 
-                    overflow-hidden 
-                    flex flex-col 
-                    items-center
-                    transition-all duration-300 ease-in-out
-                    cursor-pointer
-                    hover:-translate-y-0.5
-                    h-[140px]
-                   xs:h-[140px] sm:h-[150px] md:h-[170px]  2xl:h-[200px]
-                    sm:min-w-[100px] md:min-w-[110px] lg:min-w-[140px] xl:min-w-[170px]
-                    ${!isRecycleBin
-                    ? " hover:bg-blue-50"
-                    : "opacity-80 cursor-not-allowed"
-                }
-                `}
+            <div
+                onClick={() => {
+                    if (!isRecycleBin && window.innerWidth <= 550) {
+                        openForm(note);
+                    }
+                }}
+                className={`
+        bg-white 
+        rounded-md 
+        shadow-[-1px_2px_4px_rgba(0,0,0,0.3)]
+        p-2
+        relative 
+        overflow-hidden 
+        flex flex-col 
+        items-center
+        transition-all duration-300 ease-in-out
+        cursor-pointer
+        hover:-translate-y-0.5
+        h-[140px]
+        xs:h-[140px] sm:h-[150px] md:h-[170px] 2xl:h-[200px]
+        sm:min-w-[100px] md:min-w-[110px] lg:min-w-[140px] xl:min-w-[170px]
+        ${!isRecycleBin
+                        ? "hover:bg-blue-50"
+                        : "opacity-80 cursor-not-allowed"
+                    }
+    `}
             >
+
 
                 {/* Title...... */}
 

@@ -29,7 +29,7 @@ function SideBar({ isOpen, onSelectFolder, notes }) {
 
     return (
         <div
-            className={`absolute lg:static top-0 left-0 h-[95vh] w-[70%] sm:w-[50%] md:w-[40%] lg:w-[20%]
+            className={`absolute lg:static top-0 left-0 h-[95vh] w-[65%] sm:w-[50%] md:w-[40%] lg:w-[20%]
             bg-[#7d5dd3] text-white rounded-tl-md rounded-bl-md py-4 px-3 overflow-hidden shadow-lg
             transform transition-transform duration-500 ease-in-out z-10
              max-lg:rounded-tl-none max-lg:rounded-bl-none max-lg:rounded-tr-md max-lg:rounded-br-md

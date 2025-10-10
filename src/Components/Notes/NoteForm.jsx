@@ -72,10 +72,10 @@ function NoteForm({ selectedNote, closeForm }) {
             {/* Close Button */}
             <RiCloseFill
                 onClick={closeForm}
-                className="absolute top-3 right-3 hover:scale-110 duration-200 cursor-pointer text-3xl text-gray-700 hover:text-red-500 transition-all"
+                className="max-[550px]:hidden absolute top-3 right-3 hover:scale-110 duration-200 cursor-pointer text-3xl text-gray-700 hover:text-red-500 transition-all"
             />
 
-            <div className="relative bg-white backdrop-blur-xl border border-gray-200 w-[85%] max-w-2xl h-[80%] rounded-2xl shadow-xl overflow-hidden flex flex-col transition-all duration-300">
+            <div className="relative bg-white backdrop-blur-xl border border-gray-200 w-[85%] max-w-2xl h-[80%] max-[550px]:w-[100%] max-[550px]:h-[100%] max-[550px]:rounded-none rounded-2xl shadow-xl overflow-hidden flex flex-col transition-all duration-300">
                 {/* Top Bar */}
                 <div className="flex items-center justify-between p-2 border-b border-gray-200">
                     <IoChevronBack
