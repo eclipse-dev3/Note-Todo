@@ -91,7 +91,7 @@ function NoteCard({ note, isRecycleBin }) {
 
                 {/* Footer Actions */}
 
-                <div className="flex items-center justify-between absolute bottom-3 left-3 right-3">
+                <div className="flex items-center justify-between absolute bottom-3 left-3 right-3 max-[500px]:bottom-1.5 max-[500px]:left-2 max-[500px]:right-1.5">
 
                     {isRecycleBin &&
                         <div className="relative group">
