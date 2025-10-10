@@ -38,7 +38,7 @@ function NoteDetails({ note, softDelete }) {
 
   return (
     <>
-      <div className="animate-fadeSideIn shadow-[0px_4px_12px_rgba(0,0,0,0.3)] flex flex-col bg-white absolute top-5.5 right-0 w-40 p-1.5 rounded-lg z-20 border border-gray-200">
+      <div className="animate-fadeSideIn shadow-[0px_4px_12px_rgba(0,0,0,0.3)] flex flex-col max-[550px]:gap-2 bg-white absolute top-5.5 right-0 w-40 p-1.5 rounded-lg z-20 border border-gray-200">
 
         {/* Pin / Unpin */}
         <p
