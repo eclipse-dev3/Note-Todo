@@ -136,12 +136,12 @@ function NoteApp() {
                     {!isSideBarOpen ? (
                         <FaBars
                             onClick={toggleSideBar}
-                            className="lg:hidden absolute top-4.5 left-4 text-xl text-[#6949c1] cursor-pointer animate-fadeIn"
+                            className="lg:hidden absolute top-4 left-3.5 text-xl max-[550px]:text-2xl text-[#6949c1] cursor-pointer animate-fadeIn"
                         />
                     ) : (
                         <RiCloseFill
                             onClick={toggleSideBar}
-                            className="lg:hidden absolute top-3.5 left-3 text-3xl text-white font-bold cursor-pointer animate-fadeIn z-100"
+                            className="lg:hidden absolute  top-3 left-2.5 text-3xl max-[550px]:text-4xl text-white font-bold cursor-pointer animate-fadeIn z-100"
                         />
                     )}
 

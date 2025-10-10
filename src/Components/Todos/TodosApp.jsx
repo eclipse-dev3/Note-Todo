@@ -9,7 +9,7 @@ import SideBar from "../Common/SideBar"
 import { LuNotebook } from "react-icons/lu";
 
 
-function NoteApp() {
+function TodosApp() {
 
     const [todos, setTodos] = useState([]);
 
@@ -132,6 +132,6 @@ function NoteApp() {
     )
 }
 
-export default NoteApp
+export default TodosApp
 
 
