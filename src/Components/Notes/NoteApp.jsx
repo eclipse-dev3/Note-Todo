@@ -107,7 +107,7 @@ function NoteApp() {
                 />
 
                 {/* Main Content */}
-                <div className="relative w-full lg:w-[80%] h-[95vh] bg-gray-100 rounded-tr-md rounded-br-md p-2 pb-9 flex flex-col items-center gap-2 max-[550px]:gap-4 overflow-hidden">
+                <div className="relative w-full lg:w-[80%] h-[95vh] bg-gray-100 rounded-tr-md rounded-br-md p-2 pb-9 flex flex-col items-center gap-2 max-[550px]:gap-3.5 overflow-hidden">
 
                     {/* Search Bar */}
                     <SearchBar placeholder={'Search notes...'} searchInput={searchInput} setSearchInput={setSearchInput} />
@@ -124,7 +124,7 @@ function NoteApp() {
                     {/* Floating Add Button */}
                     <div
                         onClick={() => setIsFormOpen(true)}
-                        className="group absolute bottom-20 right-10 max-[550px]:right-7 bg-white rounded-full shadow-xl p-4 max-[550px]:p-5 cursor-pointer text-red-500 hover:scale-[1.1] hover:shadow-3xl transition-all duration-300 animate-fadeIn"
+                        className="group absolute bottom-20 right-10 max-[550px]:right-6 bg-white rounded-full shadow-xl p-4 max-[550px]:p-4.5 cursor-pointer text-red-500 hover:scale-[1.1] hover:shadow-3xl transition-all duration-300 animate-fadeIn"
                     >
                         <FaRegPenToSquare className="text-xl" />
                         <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 px-1 py-1 text-xs font-semibold text-white bg-[#7d5dd3] rounded-md shadow-[0px_0px_8px_2px_rgba(93,64,177,0.6)] opacity-0 scale-90 translate-y-1 group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 transition-all duration-300 ease-out pointer-events-none whitespace-nowrap">

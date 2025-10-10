@@ -77,10 +77,10 @@ function SideBar({ isOpen, onSelectFolder, notes }) {
                 </li>
 
                 <li className="flex gap-4 pb-3 pt-2 justify-center">
-                    <a href="https://www.linkedin.com/in/gaurav-kumar-5b678437a/" target="_blank"><FaLinkedin className="hover:text-[#0077b5] hover:bg-white rounded" /></a>
-                    <a href="https://github.com/eclipse-dev3" target="_blank"><FaGithubSquare className="hover:text-[#222] hover:bg-white rounded" /></a>
-                    <a href="https://www.instagram.com/itseclipsedev/" target="_blank"><FaInstagramSquare className="hover:text-[#e1306c] hover:bg-white rounded" /></a>
-                    <a href="https://x.com/eclipse_devX" target="_blank"><FaSquareXTwitter className="hover:text-[#222] hover:bg-white rounded" /></a>
+                    <a href="https://www.linkedin.com/in/gaurav-kumar-5b678437a/" target="_blank"><FaLinkedin className="hover:text-[#0077b5] hover:bg-white rounded max-[550px]:text-lg" /></a>
+                    <a href="https://github.com/eclipse-dev3" target="_blank"><FaGithubSquare className="hover:text-[#222] hover:bg-white rounded max-[550px]:text-lg" /></a>
+                    <a href="https://www.instagram.com/itseclipsedev/" target="_blank"><FaInstagramSquare className="hover:text-[#e1306c] hover:bg-white rounded max-[550px]:text-lg" /></a>
+                    <a href="https://x.com/eclipse_devX" target="_blank"><FaSquareXTwitter className="hover:text-[#222] hover:bg-white rounded max-[550px]:text-lg" /></a>
                 </li>
             </ul >
         </div >
