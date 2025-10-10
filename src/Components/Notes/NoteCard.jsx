@@ -84,7 +84,7 @@ function NoteCard({ note, isRecycleBin }) {
 
                 {/* Content....... */}
                 <div className="w-full h-full overflow-hidden">
-                    <p className="px-2 max-[500px]:px-1 py-0.5 text-gray-700 text-sm max-sm:text-xs truncate overflow-hidden text-ellipsis whitespace-normal line-clamp-4 max-sm:line-clamp-3">
+                    <p className="px-2 max-[500px]:px-1 py-0.5 text-gray-700 text-sm max-sm:text-xs truncate overflow-hidden text-ellipsis whitespace-normal line-clamp-4 max-sm:line-clamp-4">
                         {note.content || "No content available..."}
                     </p>
                 </div>
