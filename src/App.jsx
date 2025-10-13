@@ -37,7 +37,7 @@ function App() {
         </main>
 
         {/* Optional Footer */}
-        <footer className='p-1.5 bg-[#593ba9] text-center fixed bottom-0 left-0 w-full z-100 text-white'>Footer</footer>
+        {/* <footer className='p-1.5 bg-[#593ba9] text-center fixed bottom-0 left-0 w-full z-100 text-white'>Footer</footer> */}
       </div>
     </>
   );

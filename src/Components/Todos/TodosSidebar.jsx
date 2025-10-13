@@ -2,11 +2,11 @@ import { LuNotebook } from "react-icons/lu";
 import { TiLockClosed, TiPin } from "react-icons/ti";
 import { HiOutlineTrash } from "react-icons/hi2";
 import { useState } from "react";
-import { FaLinkedin, FaSquareXTwitter } from "react-icons/fa6";
+import { FaLinkedin, FaSquareXTwitter, FaCircleCheck } from "react-icons/fa6";
 import { FaGithubSquare, FaInstagramSquare } from "react-icons/fa";
 import Profile from '../../../src/assets/Profile.png'
 
-function SideBar({ isOpen, onSelectFolder, notes }) {
+function TodosSideBar({ isOpen, onSelectFolder, notes }) {
     const [activeFolder, setActiveFolder] = useState("All Notes");
 
     const allNotesCount = notes.filter(note => !note.isDeleted).length;
@@ -15,9 +15,10 @@ function SideBar({ isOpen, onSelectFolder, notes }) {
     const recycleBinCount = notes.filter(note => note.isDeleted).length;
 
     const keys = [
-        { id: 1, label: 'All Notes', icon: <LuNotebook />, count: allNotesCount },
-        { id: 2, label: 'Pinned Notes', icon: <TiPin className="text-xl" />, count: pinnedNotesCount },
-        { id: 3, label: 'Locked Notes', icon: <TiLockClosed className="text-xl" />, count: lockedNotesCount },
+        { id: 1, label: 'All Todos', icon: <LuNotebook />, count: allNotesCount },
+        { id: 2, label: 'Pinned Todos', icon: <TiPin className="text-xl" />, count: pinnedNotesCount },
+        { id: 2, label: 'Completed Todos', icon: <FaCircleCheck className="text-xl" />, count: 0 },
+        { id: 3, label: 'Locked Todos', icon: <TiLockClosed className="text-xl" />, count: lockedNotesCount },
         { id: 4, label: 'Recycle Bin', icon: <HiOutlineTrash className="text-xl" />, count: recycleBinCount },
     ];
 
@@ -87,4 +88,4 @@ function SideBar({ isOpen, onSelectFolder, notes }) {
     );
 }
 
-export default SideBar;
+export default TodosSideBar;

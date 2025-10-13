@@ -5,7 +5,7 @@ import NoteList from "./NoteList"
 import NoteForm from "./NoteForm"
 import { FaRegPenToSquare, FaBars } from "react-icons/fa6";
 import { RiCloseFill } from "react-icons/ri";
-import SideBar from "../Common/SideBar"
+import NoteSideBar from "./NoteSideBar"
 import { LuNotebook } from "react-icons/lu";
 
 function NoteApp() {
@@ -100,7 +100,7 @@ function NoteApp() {
             <div className="flex relative">
 
                 {/* Sidebar (hidden on small screens) */}
-                <SideBar
+                <NoteSideBar
                     isOpen={isSideBarOpen}
                     onSelectFolder={handleSelectFolder}
                     notes={notes}

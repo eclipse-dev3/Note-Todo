@@ -76,7 +76,7 @@ function NoteCard({ note, isRecycleBin }) {
                             : <div className="bg-orange-600 w-0.5 h-0.5 rounded-full shadow-[0px_0px_5px_2.5px_rgba(255,0,0,1)]"></div>
                         }
 
-                        <h2 className="font-semibold text-gray-800 line-clamp-1 text-md  max-[500px]:text-sm">
+                        <h2 className="font-semibold text-gray-800 line-clamp-1 text-md  max-[550px]:text-sm">
                             {note.title ? note.title : "Untitled Note"}
                         </h2>
                     </div>
@@ -91,14 +91,14 @@ function NoteCard({ note, isRecycleBin }) {
 
                 {/* Content....... */}
                 <div className="w-full h-full overflow-hidden">
-                    <p className="px-2 max-[500px]:px-1 py-0.5 text-gray-700 text-sm max-sm:text-xs truncate overflow-hidden text-ellipsis whitespace-normal line-clamp-4 max-sm:line-clamp-5">
+                    <p className="px-2 max-[550px]:px-1 py-0.5 text-gray-700 text-sm max-sm:text-xs truncate overflow-hidden text-ellipsis whitespace-normal line-clamp-4 max-sm:line-clamp-5">
                         {note.content || "No content available..."}
                     </p>
                 </div>
 
                 {/* Footer Actions */}
 
-                <div className="flex items-center justify-between absolute bottom-3 left-3 right-3 max-[500px]:bottom-1.5 max-[500px]:left-2 max-[500px]:right-1.5">
+                <div className="flex items-center justify-between absolute bottom-3 left-3 right-3 max-[550px]:bottom-1.5 max-[550px]:left-2 max-[550px]:right-1.5">
 
                     {isRecycleBin &&
                         <div className="relative group">
@@ -115,7 +115,7 @@ function NoteCard({ note, isRecycleBin }) {
                     }
 
                     {!isRecycleBin && (
-                        <span className="text-xs max-[500px]:text-[9px] font-semibold text-gray-700">{FormatDateShort(note?.createdAt)}</span>
+                        <span className="text-xs max-[550px]:text-[9px] font-semibold text-gray-700">{FormatDateShort(note?.createdAt)}</span>
                     )}
 
                     <div className="flex items-center gap-6  absolute right-0 bottom-0">
