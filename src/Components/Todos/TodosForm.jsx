@@ -79,7 +79,7 @@ function TodoForm({ selectedTodo, closeForm }) {
                     />
                     <GiCheckMark
                         onClick={handleSave}
-                        className="cursor-pointer hover:scale-110 duration-200 text-2xl text-green-600 hover:text-green-800 transition-all"
+                        className="cursor-pointer hover:scale-110 duration-200 text-2xl text-[#6949c1] hover:purple-700 transition-all"
                     />
                 </div>
 
