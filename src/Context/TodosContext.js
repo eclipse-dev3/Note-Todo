@@ -10,6 +10,7 @@ export const TodoContext = createContext({
             isDeleted: false,
             createdAt: new Date().toLocaleString(),
             lastUpdateAt: new Date().toLocaleString(),
+            completedAt: new Date().toLocaleString(),
         },
     ],
 
@@ -23,7 +24,7 @@ export const TodoContext = createContext({
     restoreTodo: (id) => { },
     togglePin: (id) => { },
     toggleComplete: (id) => { },
-    
+
 });
 
 

@@ -1,9 +1,11 @@
 import { LuNotebook } from "react-icons/lu";
-import { TiLockClosed, TiPin } from "react-icons/ti";
+import { TiLockClosed } from "react-icons/ti";
+import { SiPinboard } from "react-icons/si";
 import { HiOutlineTrash } from "react-icons/hi2";
 import { useState } from "react";
 import { FaLinkedin, FaSquareXTwitter, FaCircleCheck } from "react-icons/fa6";
 import { FaGithubSquare, FaInstagramSquare } from "react-icons/fa";
+import { MdCheckBoxOutlineBlank } from "react-icons/md";
 // import Profile from '../../../src/assets/Profile.png'
 
 function TodosSideBar({ isOpen, onSelectFolder, todos }) {
@@ -11,15 +13,18 @@ function TodosSideBar({ isOpen, onSelectFolder, todos }) {
 
     const allTodosCount = todos.filter(todo => !todo.isDeleted).length;
     const pinnedTodosCount = todos.filter(todo => todo.isPinned && !todo.isDeleted).length;
+    const pendingTodosCount = todos.filter(todo => !todo.isCompleted && !todo.isDeleted).length;
+    const completedTodosCount = todos.filter(todo => todo.isCompleted && !todo.isDeleted).length;
     const lockedTodosCount = todos.filter(todo => todo.isLocked && !todo.isDeleted).length;
     const recycleBinCount = todos.filter(todo => todo.isDeleted).length;
 
     const keys = [
         { id: 1, label: 'All Todos', icon: <LuNotebook />, count: allTodosCount },
-        { id: 2, label: 'Pinned Todos', icon: <TiPin className="text-xl" />, count: pinnedTodosCount },
-        { id: 3, label: 'Completed Todos', icon: <FaCircleCheck />, count: 0 },
-        { id: 4, label: 'Locked Todos', icon: <TiLockClosed className="text-xl" />, count: lockedTodosCount },
-        { id: 5, label: 'Recycle Bin', icon: <HiOutlineTrash className="text-xl" />, count: recycleBinCount },
+        { id: 2, label: 'Pinned Todos', icon: <SiPinboard className="transform scale-x-[-1]" />, count: pinnedTodosCount },
+        { id: 3, label: 'Pending Todos', icon: <MdCheckBoxOutlineBlank />, count: pendingTodosCount },
+        { id: 4, label: 'Completed Todos', icon: <FaCircleCheck />, count: completedTodosCount },
+        { id: 5, label: 'Locked Todos', icon: <TiLockClosed className="text-xl" />, count: lockedTodosCount },
+        { id: 6, label: 'Recycle Bin', icon: <HiOutlineTrash className="text-xl" />, count: recycleBinCount },
     ];
 
     const displayFolder = (label, icon) => (e) => {
@@ -31,7 +36,7 @@ function TodosSideBar({ isOpen, onSelectFolder, todos }) {
     return (
         <div
             className={`absolute lg:static top-0 left-0 h-[95vh] max-[500px]:h-[94vh] w-[65%] sm:w-[50%] md:w-[40%] lg:w-[20%]
-            bg-[#7d5dd3] text-white rounded-tl-md rounded-bl-md py-4 px-3 overflow-hidden shadow-lg
+            bg-[#ea105c] text-white rounded-tl-md rounded-bl-md py-4 px-3 overflow-hidden shadow-lg
             transform transition-transform duration-500 ease-in-out z-10
              max-lg:rounded-tl-none max-lg:rounded-bl-none max-lg:rounded-tr-md max-lg:rounded-br-md
             ${isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}`}
@@ -55,7 +60,7 @@ function TodosSideBar({ isOpen, onSelectFolder, todos }) {
                                 key={id}
                                 onClick={displayFolder(label, icon)}
                                 className={`mb-2 p-3 flex items-center justify-between rounded cursor-pointer
-                            transition-colors duration-300 ${isActive ? "bg-[#5e40b1]" : "hover:bg-[#5e40b1]"}`}
+                            transition-colors duration-300 ${isActive ? "bg-[#af0a3e]" : "hover:bg-[#af0a3e]"}`}
                             >
                                 <span className="flex items-center gap-2">{icon} {label}</span>
                                 <span className="text-xs font-semibold">{count}</span>

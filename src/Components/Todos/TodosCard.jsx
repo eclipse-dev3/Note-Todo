@@ -4,7 +4,7 @@ import { SiPinboard } from "react-icons/si";
 import { MdDeleteForever, MdRestore, MdEdit } from "react-icons/md";
 import { UseTodo } from "../../Context/TodosContext";
 import ConfirmModal from "../Common/Confirm";
-import { FormatDateShort } from "../Common/FormateDate";
+import { FormatDateShort, FormatDate } from "../Common/FormateDate";
 
 function TodosCard({ todo, isRecycleBin }) {
     const { openForm, softDelTodo, permanentDelTodo, restoreTodo, toggleComplete } = UseTodo();
@@ -68,14 +68,15 @@ function TodosCard({ todo, isRecycleBin }) {
                 {/* Title...... */}
 
                 <div className="flex justify-between items-center gap-2 w-[96%]">
-
-                    <input
-                        onChange={() => toggleComplete(todo.id)}
-                        onClick={e => e.stopPropagation()}
-                        checked={todo.isCompleted}
-                        type="checkbox"
-                        className="cursor-pointer"
-                    />
+                    {!isRecycleBin &&
+                        <input
+                            onChange={() => toggleComplete(todo.id)}
+                            onClick={e => e.stopPropagation()}
+                            checked={todo.isCompleted}
+                            type="checkbox"
+                            className="cursor-pointer"
+                        />
+                    }
 
                     <div className="flex items-center gap-3 w-[80%]">
                         {todo?.isPinned ? <div className="bg-blue-600 w-0.5 h-0.5 rounded-full shadow-[0px_0px_5px_2.5px_rgba(0,0,255,1)]"></div>
@@ -90,7 +91,7 @@ function TodosCard({ todo, isRecycleBin }) {
 
                     {todo.isPinned && (
                         <SiPinboard
-                            className="text-lg sm:text-xl text-[#7d5dd3] transform scale-x-[-1] opacity-90 group-hover:opacity-100"
+                            className="absolute top-2 right-3 text-md  text-[#ea105c] transform scale-x-[-1] group-hover:opacity-100"
                         />
                     )}
 
@@ -116,7 +117,11 @@ function TodosCard({ todo, isRecycleBin }) {
                     }
 
                     {!isRecycleBin && (
-                        <span className="text-xs font-semibold text-gray-700">{FormatDateShort(todo?.createdAt)}</span>
+                        todo.isCompleted ?
+                            <div>
+                                < span className="text-xs font-semibold text-gray-700">{FormatDate(todo?.completedAt)}</span>
+                            </div>
+                            : < span className="text-xs font-semibold text-gray-700">{FormatDateShort(todo?.createdAt)}</span>
                     )}
 
                     <div className="flex items-center gap-6  absolute right-0 bottom-0">
@@ -153,10 +158,10 @@ function TodosCard({ todo, isRecycleBin }) {
 
                     </div>
                 </div>
-            </div>
+            </div >
 
             {/* Delete Confirmation */}
-            <ConfirmModal
+            < ConfirmModal
                 isOpen={showDeleteConfirm}
                 confirmText={"Delete"}
                 classes={"bg-red-500 hover:bg-red-600"}
@@ -170,22 +175,25 @@ function TodosCard({ todo, isRecycleBin }) {
                         ? "This action cannot be undone. Are you sure you want to delete this note permanently?"
                         : "Are you sure you want to move this note to the recycle bin?"
                 }
-                onCancel={() => setShowDeleteConfirm(false)}
+                onCancel={() => setShowDeleteConfirm(false)
+                }
                 onConfirm={handleConfirmDelete}
             />
 
             {/* Restore Confirmation */}
-            {isRecycleBin && (
-                <ConfirmModal
-                    confirmText={"Restore"}
-                    classes={"bg-blue-500 hover:bg-blue-600"}
-                    isOpen={showRestoreConfirm}
-                    title={"Restore Note?"}
-                    message={"Are you sure you want to restore this note from the recycle bin?"}
-                    onCancel={() => setShowRestoreConfirm(false)}
-                    onConfirm={handleConfirmRestore}
-                />
-            )}
+            {
+                isRecycleBin && (
+                    <ConfirmModal
+                        confirmText={"Restore"}
+                        classes={"bg-blue-500 hover:bg-blue-600"}
+                        isOpen={showRestoreConfirm}
+                        title={"Restore Note?"}
+                        message={"Are you sure you want to restore this note from the recycle bin?"}
+                        onCancel={() => setShowRestoreConfirm(false)}
+                        onConfirm={handleConfirmRestore}
+                    />
+                )
+            }
         </>
     );
 }

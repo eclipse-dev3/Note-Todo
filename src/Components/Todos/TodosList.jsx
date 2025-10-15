@@ -12,11 +12,12 @@ function TodosList({ activeFolder, searchInput }) {
 
         if (activeFolder === "All Todos") return !todo.isDeleted && matchSearch;
         if (activeFolder === "Pinned Todos") return todo.isPinned && !todo.isDeleted && matchSearch;
-        if (activeFolder === "Locked Todos") return todo.isLocked && !todo.isDeleted && matchSearch;
+        if (activeFolder === "Pending Todos") return !todo.isCompleted && !todo.isDeleted && matchSearch;
         if (activeFolder === "Completed Todos") return todo.isCompleted && !todo.isDeleted && matchSearch;
+        if (activeFolder === "Locked Todos") return todo.isLocked && !todo.isDeleted && matchSearch;
         if (activeFolder === "Recycle Bin") return todo.isDeleted && matchSearch;
         return !todo.isDeleted && matchSearch;
-        
+
     });
 
     if (filteredTodos.length === 0) {

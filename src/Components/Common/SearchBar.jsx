@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { IoSearchSharp, IoClose } from "react-icons/io5";
 
-function SearchBar({ placeholder, searchInput, setSearchInput }) {
+function SearchBar({ placeholder, searchInput, setSearchInput, className }) {
     const [isFocused, setIsFocused] = useState(false);
     const [showClear, setShowClear] = useState(false);
 
@@ -21,19 +21,19 @@ function SearchBar({ placeholder, searchInput, setSearchInput }) {
             <IoSearchSharp
                 className={`z-10
           absolute left-3 top-1/2 -translate-y-1/2 text-lg transition-all duration-300
-          ${isFocused ? "text-[#6c49cd]" : "text-gray-500"}
+          ${isFocused ? `${className}` : "text-gray-500"}
         `}
             />
 
             {/* Input Field */}
             <input
                 className={`
-          w-full pl-10 pr-10 py-2 rounded-3xl text-sm font-semibold
+           w-full pl-10 pr-10 py-2 rounded-3xl text-sm font-semibold
            backdrop-blur-md 
-          text-[#6949c1] placeholder:text-gray-700
-          outline-none border-b-[2px] bg-gray-100
+           placeholder:text-gray-700
+           outline-none border-b-[2px] bg-gray-100
            focus:bg-white focus:shadow-[0_3px_5px_rgba(105,73,193,0.6)]
-          transition-all duration-250 ease-in-out
+           transition-all duration-250 ease-in-out ${className}
         `}
                 placeholder={placeholder}
                 type="text"

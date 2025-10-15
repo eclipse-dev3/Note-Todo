@@ -68,7 +68,7 @@ function TodosApp() {
     };
 
     const toggleComplete = (id) => {
-        setTodos(prevTodos => prevTodos.map(todo => todo.id === id ? { ...todo, isCompleted: !todo.isCompleted } : todo));
+        setTodos(prevTodos => prevTodos.map(todo => todo.id === id ? { ...todo, isCompleted: !todo.isCompleted, completedAt: new Date().toLocaleString() } : todo));
     }
 
     const permanentDelTodo = (id) => {
@@ -114,10 +114,13 @@ function TodosApp() {
                 <div className="relative w-full lg:w-[80%] h-[95vh] bg-gray-100 rounded-tr-md rounded-br-md p-2 pb-9 flex flex-col items-center gap-2 max-[550px]:gap-3.5 overflow-hidden">
 
                     {/* Search Bar */}
-                    <SearchBar placeholder={'Search notes...'} searchInput={searchInput} setSearchInput={setSearchInput} />
+                    <SearchBar placeholder={'Search notes...'}
+                        searchInput={searchInput} setSearchInput={setSearchInput}
+                        className='text-[#ea105c]'
+                    />
 
                     {/* Folder Header */}
-                    <div className="flex items-center justify-center text-xs font-semibold h-6 text-white rounded px-3 cursor-pointer bg-[#7d5dd3]">
+                    <div className="flex items-center justify-center text-xs font-semibold h-6 text-white rounded px-3 cursor-pointer bg-[#ea105c]">
                         {activeFolderView}
                     </div>
 
