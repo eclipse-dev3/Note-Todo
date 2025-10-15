@@ -83,25 +83,19 @@ function TodoForm({ selectedTodo, closeForm }) {
                     />
                 </div>
 
-                <div className="flex items-center justify-between gap-6 px-4">
-                    <div className=" font-semibold text-gray-700">Deadline: </div>
-                    <input
-                        type="date"
-                        className="w-full px-3 py-1.5 border-b-2 border-gray-300 outline-none focus:border-blue-500 text-lg font-semibold placeholder-gray-400 rounded-sm transition-all"
+
+                <div className="absolute top-17 right-6">
+                    <BsThreeDotsVertical
+                        onClick={handleDetailsToggle}
+                        className="cursor-pointer text-xl hover:scale-110 duration-200 text-gray-600 hover:text-gray-900 "
                     />
-                    <div className="relative ml-2">
-                        <BsThreeDotsVertical
-                            onClick={handleDetailsToggle}
-                            className="cursor-pointer text-xl hover:scale-110 duration-200 text-gray-600 hover:text-gray-900 "
+                    {isDetailsOpen && (
+                        <TodoDetails
+                            key={currentTodo.id}
+                            todo={currentTodo}
+                            softDelete={handleSoftDelete}
                         />
-                        {isDetailsOpen && (
-                            <TodoDetails
-                                key={currentTodo.id}
-                                todo={currentTodo}
-                                softDelete={handleSoftDelete}
-                            />
-                        )}
-                    </div>
+                    )}
                 </div>
 
                 {/* Content Area */}

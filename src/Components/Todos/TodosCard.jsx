@@ -45,7 +45,6 @@ function TodosCard({ todo, isRecycleBin }) {
                     }
                 }}
                 className={`
-                    bg-white 
                     rounded-md 
                     shadow-[-1px_2px_4px_rgba(0,0,0,0.3)]
                     p-2
@@ -58,16 +57,14 @@ function TodosCard({ todo, isRecycleBin }) {
                     hover:-translate-y-0.5
                     sm:h-[80px] lg:h-[80px] max-[640px]:h-[60px]
                     sm:min-w-[100px] md:min-w-[110px] lg:min-w-[140px] xl:min-w-[170px]
-                    ${!isRecycleBin
-                        ? " hover:bg-red-50"
-                        : "opacity-80 cursor-not-allowed"
-                    }
+                    ${todo.isCompleted ? 'bg-red-50' : 'bg-white'}
+            ${!isRecycleBin ? " hover:bg-red-50" : "opacity-80 cursor-not-allowed"}
                 `}
             >
 
                 {/* Title...... */}
 
-                <div className="flex justify-between items-center gap-2 w-[96%]">
+                <div className="flex items-center gap-5 w-[96%]">
                     {!isRecycleBin &&
                         <input
                             onChange={() => toggleComplete(todo.id)}
@@ -79,10 +76,9 @@ function TodosCard({ todo, isRecycleBin }) {
                     }
 
                     <div className="flex items-center gap-3 w-[80%]">
-                        {todo?.isPinned ? <div className="bg-blue-600 w-0.5 h-0.5 rounded-full shadow-[0px_0px_5px_2.5px_rgba(0,0,255,1)]"></div>
-                            : <div className="bg-orange-600 w-0.5 h-0.5 rounded-full shadow-[0px_0px_5px_2.5px_rgba(255,0,0,1)]"></div>
+                        {todo?.isPinned ? <div className="bg-orange-600 w-0.5 h-0.5 rounded-full shadow-[0px_0px_5px_2.5px_rgba(255,0,0,1)]"></div>
+                            : <div className="bg-blue-600 w-0.5 h-0.5 rounded-full shadow-[0px_0px_5px_2.5px_rgba(0,0,255,1)]"></div>
                         }
-
                         <h2 className={`font-semibold  line-clamp-1 text-md max-[550px]:text-xs ${todo.isCompleted ? 'line-through text-gray-600' : ''}`}>
                             {todo.text}
                         </h2>
@@ -109,7 +105,7 @@ function TodosCard({ todo, isRecycleBin }) {
                                 className="cursor-pointer text-lg sm:text-xl text-gray-600 hover:text-blue-600 hover:scale-115 transition-transform duration-200"
                             />
                             <span
-                                className="absolute bottom-full left-1/1 -translate-x-1/2 mb-1.5 px-1 py-1 text-xs font-semibold text-white bg-[#7d5dd3] rounded-md shadow-[0px_0px_8px_2px_rgba(93,64,177,0.6)] opacity-0 scale-90 translate-y-1 group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 transition-all duration-300 ease-out pointer-events-none whitespace-nowrap"
+                                className="absolute bottom-full left-1/1 -translate-x-1/2 mb-1.5 px-1 py-1 text-xs font-semibold text-white bg-[#ea105c] rounded-md shadow-[0px_0px_8px_2px_rgba(234,16,92,0.5)] opacity-0 scale-90 translate-y-1 group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 transition-all duration-300 ease-out pointer-events-none whitespace-nowrap"
                             >
                                 Restore
                             </span>
@@ -135,7 +131,7 @@ function TodosCard({ todo, isRecycleBin }) {
                                             className="max-[550px]:hidden cursor-pointer text-md text-gray-600 hover:text-green-600 hover:scale-120 transition-transform duration-200"
                                         />
                                         <span
-                                            className="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 px-1 py-1 text-xs font-semibold text-white bg-[#7d5dd3] rounded-md shadow-[0px_0px_8px_2px_rgba(93,64,177,0.6)] opacity-0 scale-90 translate-y-1 group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 transition-all duration-300 ease-out pointer-events-none whitespace-nowrap"
+                                            className="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 px-1 py-1 text-xs font-semibold text-white bg-[#ea105c] rounded-md shadow-[0px_0px_8px_2px_rgba(234,16,92,0.5)] opacity-0 scale-90 translate-y-1 group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 transition-all duration-300 ease-out pointer-events-none whitespace-nowrap"
                                         >
                                             Edit
                                         </span>
@@ -150,7 +146,7 @@ function TodosCard({ todo, isRecycleBin }) {
                                 className="cursor-pointer text-lg text-gray-600 hover:text-red-600 hover:scale-115 transition-transform duration-200 ml-auto"
                             />
                             <span
-                                className="absolute bottom-full left-1/12 -translate-x-1/2 mb-1.5 px-1 py-1 text-xs font-semibold text-white bg-[#7d5dd3] rounded-md shadow-[0px_0px_8px_2px_rgba(93,64,177,0.6)] opacity-0 scale-90 translate-y-1 group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 transition-all duration-300 ease-out pointer-events-none whitespace-nowrap"
+                                className="absolute bottom-full left-1/12 -translate-x-1/2 mb-1.5 px-1 py-1 text-xs font-semibold text-white bg-[#ea105c] rounded-md shadow-[0px_0px_8px_2px_rgba(234,16,92,0.5)] opacity-0 scale-90 translate-y-1 group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 transition-all duration-300 ease-out pointer-events-none whitespace-nowrap"
                             >
                                 Delete
                             </span>

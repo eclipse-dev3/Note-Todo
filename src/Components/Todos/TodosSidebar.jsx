@@ -47,7 +47,7 @@ function TodosSideBar({ isOpen, onSelectFolder, todos }) {
             <div className="flex gap-4.5 absolute right-5" >
                 <div className="bg-red-600 w-0.5 h-0.5 rounded-full shadow-[0px_0px_6px_4px_rgba(255,0,0,1)]"></div>
                 <div className="bg-green-400 w-0.5 h-0.5 rounded-full shadow-[0px_0px_6px_4px_rgba(0,255,0,1)]"></div>
-                <div className="bg-blue-700 w-0.5 h-0.5 rounded-full shadow-[0px_0px_6px_4px_rgba(0,0,255,1)]"></div>
+                <div className="bg-blue-800 w-0.5 h-0.5 rounded-full shadow-[0px_0px_6px_4px_rgba(0,0,255,1)]"></div>
             </div >
 
             {/* Sidebar menu */}
@@ -76,7 +76,7 @@ function TodosSideBar({ isOpen, onSelectFolder, todos }) {
                     <span className="text-sm font-bold flex flex-col">Contact</span>
                     <a href="https://gaurav-kumar-03.vercel.app" target="_blank" className="relative group">
                         {/* <img src='' alt="Profile" width={45} className="hover:scale-110 duration-200 p-0.5 bg-blue-900 rounded-full" /> */}
-                        <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 text-xs font-semibold text-white bg-[#5e40b1] rounded-md shadow-[0px_0px_8px_2px_rgba(93,64,177,0.8)] opacity-0 group-hover:opacity-100 transition-all duration-300">
+                        <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 text-xs font-semibold text-white bg-[#f11a65] rounded-md shadow-[0_4px_10px_rgba(234,16,92,0.5)] opacity-0 group-hover:opacity-100 transition-all duration-300">
                             Portfolio
                         </span>
                     </a>

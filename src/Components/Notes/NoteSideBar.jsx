@@ -41,7 +41,7 @@ function NoteSideBar({ isOpen, onSelectFolder, notes }) {
             <div className="flex gap-4.5 absolute right-5" >
                 <div className="bg-red-600 w-0.5 h-0.5 rounded-full shadow-[0px_0px_6px_4px_rgba(255,0,0,1)]"></div>
                 <div className="bg-green-400 w-0.5 h-0.5 rounded-full shadow-[0px_0px_6px_4px_rgba(0,255,0,1)]"></div>
-                <div className="bg-blue-700 w-0.5 h-0.5 rounded-full shadow-[0px_0px_6px_4px_rgba(0,0,255,1)]"></div>
+                <div className="bg-blue-800 w-0.5 h-0.5 rounded-full shadow-[0px_0px_6px_4px_rgba(0,0,255,1)]"></div>
             </div >
 
             {/* Sidebar menu */}
