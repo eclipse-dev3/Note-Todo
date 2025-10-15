@@ -29,12 +29,12 @@ function TodoDetails({ todo, softDelete }) {
         togglePin(todo.id);
     };
 
-    // const handleDownloadPdf = (todo) => {
-    //     const doc = new jsPDF();
-    //     const content = `Title: ${todo.title}\n\n${note.content}\n\nCreated At: ${note.createdAt}\nLast Updated: ${note.lastUpdateAt}`;
-    //     doc.text(content, 10, 10);
-    //     doc.save(`${note.title || "Untitled Note"}.pdf`);
-    // };
+    const handleDownloadPdf = (todo) => {
+        const doc = new jsPDF();
+        const content = `Title: ${todo.text}\n\nCreated At: ${todo.createdAt}\nLast Updated: ${todo.lastUpdateAt}`;
+        doc.text(content, 10, 10);
+        doc.save(`${todo.todo || "Untitled Note"}.pdf`);
+    };
 
     return (
         <>
@@ -55,10 +55,10 @@ function TodoDetails({ todo, softDelete }) {
                 </p>
 
                 {/* Download Buttons */}
-                {/* <p className="text-sm text-gray-900 font-bold flex items-center gap-1.5 cursor-pointer hover:bg-gray-300 rounded h-10 px-1.5 transition-all duration-300"
-                    onClick={() => handleDownloadPdf(note)}>
+                <p className="text-sm text-gray-900 font-bold flex items-center gap-1.5 cursor-pointer hover:bg-gray-300 rounded h-10 px-1.5 transition-all duration-300"
+                    onClick={() => handleDownloadPdf(todo)}>
                     <HiOutlineDownload className="text-black text-lg" /> Download
-                </p> */}
+                </p>
 
                 {/* Created / Updated */}
                 <p className="text-sm text-gray-700 font-bold flex flex-col hover:bg-gray-300 rounded h-10 px-1.5 transition-all duration-300">

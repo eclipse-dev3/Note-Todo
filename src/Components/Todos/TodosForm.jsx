@@ -14,7 +14,7 @@ function TodoForm({ selectedTodo, closeForm }) {
 
     useEffect(() => {
         if (selectedTodo) {
-            setText(selectedNote.text || "");
+            setText(selectedTodo.text || "");
         } else {
             setText("");
         }
@@ -63,14 +63,14 @@ function TodoForm({ selectedTodo, closeForm }) {
     };
 
     return (
-        <div className="bg-black/40 w-full h-full absolute top-0 left-0 z-50 flex items-center justify-center animate-fadeIn">
+        <div className="absolute inset-0 top-0 left-0 w-full h-full bg-black/30 backdrop-blur-xs flex items-center justify-center z-50 animate-fadeIn">
 
             <RiCloseFill
                 onClick={closeForm}
-                className="absolute top-3 right-3 hover:scale-110 duration-200 cursor-pointer text-3xl text-gray-900 hover:text-red-500 transition-all"
+                className="max-[550px]:hidden absolute top-3 right-3 hover:scale-110 duration-200 cursor-pointer text-3xl text-gray-700 hover:text-red-500 transition-all"
             />
 
-            <div className="relative bg-white w-[85%] max-w-2xl h-[80%] rounded-xl shadow-2xl overflow-hidden flex flex-col">
+            <div className="relative bg-white backdrop-blur-xl border border-gray-200 w-[85%] max-w-2xl h-[80%] max-[550px]:w-[100%] max-[550px]:h-[100%] max-[550px]:rounded-none rounded-2xl shadow-xl overflow-hidden flex flex-col transition-all duration-300">
 
                 <div className="flex items-center justify-between p-2 border-b border-gray-200">
                     <IoChevronBack
@@ -83,15 +83,11 @@ function TodoForm({ selectedTodo, closeForm }) {
                     />
                 </div>
 
-                <div className="flex items-center justify-between px-4 ">
+                <div className="flex items-center justify-between gap-6 px-4">
+                    <div className=" font-semibold text-gray-700">Deadline: </div>
                     <input
-                        type="text"
-                        placeholder="Todo..."
-                        value={text}
-                        onChange={(e) => setText(e.target.value)}
+                        type="date"
                         className="w-full px-3 py-1.5 border-b-2 border-gray-300 outline-none focus:border-blue-500 text-lg font-semibold placeholder-gray-400 rounded-sm transition-all"
-                        autoFocus
-                        spellCheck="false"
                     />
                     <div className="relative ml-2">
                         <BsThreeDotsVertical
@@ -107,6 +103,17 @@ function TodoForm({ selectedTodo, closeForm }) {
                         )}
                     </div>
                 </div>
+
+                {/* Content Area */}
+                <textarea
+                    placeholder="Take a todo..."
+                    value={text}
+                    autoFocus
+                    spellCheck="false"
+                    onChange={(e) => setText(e.target.value)}
+                    className="flex-1 m-4 mt-2 p-4 rounded-xl bg-white/50 border border-gray-200 outline-none shadow-inner resize-none focus:ring-2 focus:ring-[#6949c1]/40 transition-all duration-300"
+                ></textarea>
+
             </div>
         </div>
     );

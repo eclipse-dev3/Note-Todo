@@ -6,8 +6,8 @@ import { UseTodo } from "../../Context/TodosContext";
 import ConfirmModal from "../Common/Confirm";
 import { FormatDateShort } from "../Common/FormateDate";
 
-function TodoCard({ todo, isRecycleBin }) {
-    const { openForm, softDelNote, permanentDelNote, restoreNote } = UseTodo();
+function TodosCard({ todo, isRecycleBin }) {
+    const { openForm, softDelTodo, permanentDelTodo, restoreTodo, toggleComplete } = UseTodo();
 
     const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
     const [showRestoreConfirm, setShowRestoreConfirm] = useState(false);
@@ -20,9 +20,9 @@ function TodoCard({ todo, isRecycleBin }) {
     const handleConfirmDelete = () => {
         setShowDeleteConfirm(false);
         if (isRecycleBin) {
-            permanentDelNote(todo.id);
+            permanentDelTodo(todo.id);
         } else {
-            softDelNote(todo.id);
+            softDelTodo(todo.id);
         }
     };
 
@@ -33,12 +33,18 @@ function TodoCard({ todo, isRecycleBin }) {
 
     const handleConfirmRestore = () => {
         setShowRestoreConfirm(false);
-        restoreNote(todo.id);
+        restoreTodo(todo.id);
     };
 
     return (
         <>
-            <div className={`
+            <div
+                onClick={() => {
+                    if (!isRecycleBin && !todo.isCompleted && window.innerWidth <= 550) {
+                        openForm(todo);
+                    }
+                }}
+                className={`
                     bg-white 
                     rounded-md 
                     shadow-[-1px_2px_4px_rgba(0,0,0,0.3)]
@@ -50,12 +56,12 @@ function TodoCard({ todo, isRecycleBin }) {
                     transition-all duration-300 ease-in-out
                     cursor-pointer
                     hover:-translate-y-0.5
-                    sm:h-[120px] md:h-[150px] lg:h-[170px]
+                    sm:h-[80px] lg:h-[80px] max-[640px]:h-[60px]
                     sm:min-w-[100px] md:min-w-[110px] lg:min-w-[140px] xl:min-w-[170px]
                     ${!isRecycleBin
-                    ? " hover:bg-blue-50"
-                    : "opacity-80 cursor-not-allowed"
-                }
+                        ? " hover:bg-red-50"
+                        : "opacity-80 cursor-not-allowed"
+                    }
                 `}
             >
 
@@ -63,14 +69,23 @@ function TodoCard({ todo, isRecycleBin }) {
 
                 <div className="flex justify-between items-center gap-2 w-[96%]">
 
+                    <input
+                        onChange={() => toggleComplete(todo.id)}
+                        onClick={e => e.stopPropagation()}
+                        checked={todo.isCompleted}
+                        type="checkbox"
+                        className="cursor-pointer"
+                    />
+
                     <div className="flex items-center gap-3 w-[80%]">
                         {todo?.isPinned ? <div className="bg-blue-600 w-0.5 h-0.5 rounded-full shadow-[0px_0px_5px_2.5px_rgba(0,0,255,1)]"></div>
                             : <div className="bg-orange-600 w-0.5 h-0.5 rounded-full shadow-[0px_0px_5px_2.5px_rgba(255,0,0,1)]"></div>
                         }
 
-                        <h2 className="font-semibold text-gray-800 line-clamp-1 text-md">
-                            {todo.title ? todo.title : "Untitled Note"}
+                        <h2 className={`font-semibold  line-clamp-1 text-md max-[550px]:text-xs ${todo.isCompleted ? 'line-through text-gray-600' : ''}`}>
+                            {todo.text}
                         </h2>
+
                     </div>
 
                     {todo.isPinned && (
@@ -84,7 +99,7 @@ function TodoCard({ todo, isRecycleBin }) {
 
                 {/* Footer Actions */}
 
-                <div className="flex items-center justify-between absolute bottom-3 left-3 right-3">
+                <div className="flex items-center justify-between absolute bottom-3 left-3 right-3 max-[550px]:bottom-1.5 max-[550px]:left-2 max-[550px]:right-1.5">
 
                     {isRecycleBin &&
                         <div className="relative group">
@@ -101,22 +116,26 @@ function TodoCard({ todo, isRecycleBin }) {
                     }
 
                     {!isRecycleBin && (
-                        <span className="text-xs font-semibold text-gray-700">{FormatDateShort(note?.createdAt)}</span>
+                        <span className="text-xs font-semibold text-gray-700">{FormatDateShort(todo?.createdAt)}</span>
                     )}
 
-                    <div className="flex items-center gap-4  absolute right-0 bottom-0">
+                    <div className="flex items-center gap-6  absolute right-0 bottom-0">
                         {!isRecycleBin &&
 
                             <div className="relative group">
-                                <MdEdit
-                                    onClick={() => openForm(note)}
-                                    className="cursor-pointer text-md text-gray-600 hover:text-green-600 hover:scale-120 transition-transform duration-200"
-                                />
-                                <span
-                                    className="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 px-1 py-1 text-xs font-semibold text-white bg-[#7d5dd3] rounded-md shadow-[0px_0px_8px_2px_rgba(93,64,177,0.6)] opacity-0 scale-90 translate-y-1 group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 transition-all duration-300 ease-out pointer-events-none whitespace-nowrap"
-                                >
-                                    Edit
-                                </span>
+                                {!todo.isCompleted &&
+                                    <div>
+                                        <MdEdit
+                                            onClick={() => openForm(todo)}
+                                            className="max-[550px]:hidden cursor-pointer text-md text-gray-600 hover:text-green-600 hover:scale-120 transition-transform duration-200"
+                                        />
+                                        <span
+                                            className="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 px-1 py-1 text-xs font-semibold text-white bg-[#7d5dd3] rounded-md shadow-[0px_0px_8px_2px_rgba(93,64,177,0.6)] opacity-0 scale-90 translate-y-1 group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 transition-all duration-300 ease-out pointer-events-none whitespace-nowrap"
+                                        >
+                                            Edit
+                                        </span>
+                                    </div>
+                                }
                             </div>
                         }
 
@@ -171,4 +190,4 @@ function TodoCard({ todo, isRecycleBin }) {
     );
 }
 
-export default TodoCard;
+export default TodosCard;

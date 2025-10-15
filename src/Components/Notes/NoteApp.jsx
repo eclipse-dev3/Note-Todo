@@ -33,13 +33,13 @@ function NoteApp() {
 
     // Load saved notes
     useEffect(() => {
-        const storedNotes = JSON.parse(localStorage.getItem('allNotes'));
+        const storedNotes = JSON.parse(localStorage.getItem('myNotes'));
         if (storedNotes && storedNotes.length > 0) setNotes(storedNotes);
     }, []);
 
     // Save notes to local storage
     useEffect(() => {
-        localStorage.setItem('allNotes', JSON.stringify(notes));
+        localStorage.setItem('myNotes', JSON.stringify(notes));
     }, [notes]);
 
     // CRUD logic

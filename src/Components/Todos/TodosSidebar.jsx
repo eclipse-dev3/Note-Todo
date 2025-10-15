@@ -6,20 +6,20 @@ import { FaLinkedin, FaSquareXTwitter, FaCircleCheck } from "react-icons/fa6";
 import { FaGithubSquare, FaInstagramSquare } from "react-icons/fa";
 import Profile from '../../../src/assets/Profile.png'
 
-function TodosSideBar({ isOpen, onSelectFolder, notes }) {
-    const [activeFolder, setActiveFolder] = useState("All Notes");
+function TodosSideBar({ isOpen, onSelectFolder, todos }) {
+    const [activeFolder, setActiveFolder] = useState("All Todos");
 
-    const allNotesCount = notes.filter(note => !note.isDeleted).length;
-    const pinnedNotesCount = notes.filter(note => note.isPinned && !note.isDeleted).length;
-    const lockedNotesCount = notes.filter(note => note.isLocked && !note.isDeleted).length;
-    const recycleBinCount = notes.filter(note => note.isDeleted).length;
+    const allTodosCount = todos.filter(todo => !todo.isDeleted).length;
+    const pinnedTodosCount = todos.filter(todo => todo.isPinned && !todo.isDeleted).length;
+    const lockedTodosCount = todos.filter(todo => todo.isLocked && !todo.isDeleted).length;
+    const recycleBinCount = todos.filter(todo => todo.isDeleted).length;
 
     const keys = [
-        { id: 1, label: 'All Todos', icon: <LuNotebook />, count: allNotesCount },
-        { id: 2, label: 'Pinned Todos', icon: <TiPin className="text-xl" />, count: pinnedNotesCount },
-        { id: 2, label: 'Completed Todos', icon: <FaCircleCheck className="text-xl" />, count: 0 },
-        { id: 3, label: 'Locked Todos', icon: <TiLockClosed className="text-xl" />, count: lockedNotesCount },
-        { id: 4, label: 'Recycle Bin', icon: <HiOutlineTrash className="text-xl" />, count: recycleBinCount },
+        { id: 1, label: 'All Todos', icon: <LuNotebook />, count: allTodosCount },
+        { id: 2, label: 'Pinned Todos', icon: <TiPin className="text-xl" />, count: pinnedTodosCount },
+        { id: 3, label: 'Completed Todos', icon: <FaCircleCheck />, count: 0 },
+        { id: 4, label: 'Locked Todos', icon: <TiLockClosed className="text-xl" />, count: lockedTodosCount },
+        { id: 5, label: 'Recycle Bin', icon: <HiOutlineTrash className="text-xl" />, count: recycleBinCount },
     ];
 
     const displayFolder = (label, icon) => (e) => {

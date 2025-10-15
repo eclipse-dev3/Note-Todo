@@ -4,23 +4,26 @@ export const TodoContext = createContext({
     todos: [
         {
             id: 1,
-            title: 'First Todo.',
-            createdAt: new Date().toLocaleString(),
-            lastUpdateAt: new Date().toLocaleString(),
+            text: 'First Todo.',
             isCompleted: false,
             isPinned: false,
             isDeleted: false,
+            createdAt: new Date().toLocaleString(),
+            lastUpdateAt: new Date().toLocaleString(),
         },
     ],
-    addTodo: (note) => { },
+
+    addTodo: (todo) => { },
     UpdateTodo: (id, updatedTodo) => { },
     softDelTodo: (id) => { },
     permanentDelTodo: (id) => { },
     recycleBinTodo: (id) => { },
     openForm: (note) => { },
     closeForm: () => { },
-    restoreNote: (id) => { },
+    restoreTodo: (id) => { },
     togglePin: (id) => { },
+    toggleComplete: (id) => { },
+    
 });
 
 

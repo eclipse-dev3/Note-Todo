@@ -1,20 +1,22 @@
 
 import { UseTodo } from "../../Context/TodosContext";
-import TodoCard from "./TodosCard";
+import TodosCard from "./TodosCard";
 import { LuInbox } from "react-icons/lu";
 
-function TodoList({ activeFolder, searchInput }) {
+function TodosList({ activeFolder, searchInput }) {
     const { todos } = UseTodo();
 
     const filteredTodos = todos.filter(todo => {
-        const matchSearch = todo.title?.toLocaleLowerCase().includes(searchInput.toLocaleLowerCase()) ||
-            todo.content?.toLocaleLowerCase().includes(searchInput.toLocaleLowerCase());
 
-        if (activeFolder === "All Notes") return !todo.isDeleted && matchSearch;
-        if (activeFolder === "Pinned Notes") return todo.isPinned && !todo.isDeleted && matchSearch;
-        if (activeFolder === "Locked Notes") return todo.isLocked && !todo.isDeleted && matchSearch;
+        const matchSearch = todo.text?.toLocaleLowerCase().includes(searchInput.toLocaleLowerCase());
+
+        if (activeFolder === "All Todos") return !todo.isDeleted && matchSearch;
+        if (activeFolder === "Pinned Todos") return todo.isPinned && !todo.isDeleted && matchSearch;
+        if (activeFolder === "Locked Todos") return todo.isLocked && !todo.isDeleted && matchSearch;
+        if (activeFolder === "Completed Todos") return todo.isCompleted && !todo.isDeleted && matchSearch;
         if (activeFolder === "Recycle Bin") return todo.isDeleted && matchSearch;
         return !todo.isDeleted && matchSearch;
+        
     });
 
     if (filteredTodos.length === 0) {
@@ -30,12 +32,12 @@ function TodoList({ activeFolder, searchInput }) {
     return (
 
         <div key={activeFolder}
-            className="w-full grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 gap-2 p-1 overflow-y-auto rounded-md animate-fadeIn scrollbar-hide">
+            className="w-[80%] max-[550px]:w-[95%] flex flex-col gap-4 p-3 pt-4 overflow-y-auto rounded-md animate-fadeIn scrollbar-hide">
 
             {filteredTodos.map(todo => (
-                <TodoCard
+                <TodosCard
                     key={todo.id}
-                    note={todo}
+                    todo={todo}
                     isRecycleBin={activeFolder === "Recycle Bin"}
                 />
             ))}
@@ -44,4 +46,4 @@ function TodoList({ activeFolder, searchInput }) {
     );
 }
 
-export default TodoList;
+export default TodosList;

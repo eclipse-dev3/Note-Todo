@@ -1,18 +1,16 @@
 import { useEffect, useState } from "react"
 import { TodoContext } from "../../Context/TodosContext"
 import SearchBar from "../Common/SearchBar"
-import TodoList from "./TodosList"
-import TodoForm from "./TodosForm"
+import TodosList from "./TodosList"
+import TodosForm from "./TodosForm"
 import { FaRegPenToSquare, FaBars } from "react-icons/fa6";
 import { RiCloseFill } from "react-icons/ri";
-import TodosSideBar from "./TodosSidebar"
+import TodosSideBar from "./TodosSideBar"
 import { LuNotebook } from "react-icons/lu";
-
 
 function TodosApp() {
 
     const [todos, setTodos] = useState([]);
-
     const [selectedTodo, setSelectedTodo] = useState(null);
     const [isFormOpen, setIsFormOpen] = useState(false);
     const [isSideBarOpen, setIsSideBarOpen] = useState(false);
@@ -20,125 +18,141 @@ function TodosApp() {
     const [searchInput, setSearchInput] = useState('');
     const [debouncedSearch, setDebouncedSearch] = useState('');
     const [activeFolderView, setActiveFolderView] = useState(
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 h-6">
             <LuNotebook /> All Todos
         </div>
     );
 
+    // Debounce search input
     useEffect(() => {
         const handler = setTimeout(() => {
             setDebouncedSearch(searchInput);
         }, 300);
-
-        return () => {
-            clearTimeout(handler);
-        };
+        return () => clearTimeout(handler);
     }, [searchInput]);
 
+    // Load saved notes
     useEffect(() => {
         const todos = JSON.parse(localStorage.getItem('myTodos'));
         if (todos && todos.length > 0) setTodos(todos);
     }, []);
 
+    // Save notes to local storage
     useEffect(() => {
         localStorage.setItem('myTodos', JSON.stringify(todos));
     }, [todos]);
 
-    const addTodo = (todo) => {
-        setTodos(prevTodos => [{ id: Date.now(), ...todo }, ...prevTodos])
-    }
+    // CRUD logic
+    const addTodo = (todos) => {
+        setTodos(prevTodos => [{ id: Date.now(), ...todos }, ...prevTodos])
+    };
 
-    const UpdateTodo = (id, UpdateTodo) => {
-        setTodos(prevTodos => prevTodos.map(note => note.id === id ? { ...note, ...UpdateTodo, lastUpdateAt: new Date().toLocaleString() } : note))
-    }
+    const UpdateTodo = (id, updatedTodo) => {
+        setTodos(prevTodos =>
+            prevTodos.map(todo =>
+                todo.id === id ? { ...todo, ...updatedTodo, lastUpdateAt: new Date().toLocaleString() } : todo
+            )
+        );
+    };
 
     const softDelTodo = (id) => {
-        setTodos(prevTodos => prevTodos.map(note => note.id === id ? { ...note, isDeleted: true } : note))
-    }
+        setTodos(prevTodos => prevTodos.map(todo => todo.id === id ? { ...todo, isDeleted: true } : todo));
+    };
 
     const restoreTodo = (id) => {
-        setTodos(prevTodos => prevTodos.map(note => note.id === id ? { ...note, isDeleted: false } : note))
-    }
+        setTodos(prevTodos => prevTodos.map(todo => todo.id === id ? { ...todo, isDeleted: false } : todo));
+    };
 
     const togglePin = (id) => {
-        setTodos(prevTodos => prevTodos.map(note => note.id === id ? { ...note, isPinned: !note.isPinned } : note))
+        setTodos(prevTodos => prevTodos.map(todo => todo.id === id ? { ...todo, isPinned: !todo.isPinned } : todo));
+    };
+
+    const toggleComplete = (id) => {
+        setTodos(prevTodos => prevTodos.map(todo => todo.id === id ? { ...todo, isCompleted: !todo.isCompleted } : todo));
     }
 
     const permanentDelTodo = (id) => {
-        setTodos(prevTodos => prevTodos.filter(note => note.id !== id))
-    }
+        setTodos(prevTodos => prevTodos.filter(todo => todo.id !== id));
+    };
 
-    const recycleBinTodo = (id) => {
-        setNotes(prevTodos => prevTodos.map(note => note.id === id ? { ...note, isDeleted: true } : note))
-    }
-
-    const openForm = (note) => {
-        setSelectedTodo(note);
+    const openForm = (todo) => {
+        setSelectedTodo(todo);
         setIsFormOpen(true);
-    }
+    };
 
     const closeForm = () => {
         setSelectedTodo(null);
         setIsFormOpen(false);
-    }
+    };
 
     const toggleSideBar = () => {
         setIsSideBarOpen(prev => !prev);
-    }
+    };
 
     const handleSelectFolder = (folderLabel, FolderIcon) => {
         setActiveFolder(folderLabel);
         setActiveFolderView(
-            <div className="flex items-center gap-2 justify-center">
+            <div className="flex items-center gap-2 justify-center h-6">
                 {FolderIcon} {folderLabel}
             </div>
         );
     };
 
     return (
-        <TodoContext.Provider value={{ todos, addTodo, UpdateTodo, softDelTodo, permanentDelTodo, recycleBinTodo, togglePin, restoreTodo, openForm, closeForm }}>
+        <TodoContext.Provider value={{ todos, addTodo, UpdateTodo, softDelTodo, permanentDelTodo, togglePin, restoreTodo, toggleComplete, openForm, closeForm }}>
 
             <div className="flex relative">
 
+                {/* Sidebar (hidden on small screens) */}
                 <TodosSideBar
                     isOpen={isSideBarOpen}
                     onSelectFolder={handleSelectFolder}
-                    notes={todos}
+                    todos={todos}
                 />
 
-                <div className=" relative w-full lg:w-[80%] h-[95vh] bg-gray-100 rounded-tr-md rounded-br-md p-2 pb-9 flex flex-col items-center gap-2 max-[550px]:gap-3.5 overflow-hidden">
+                {/* Main Content */}
+                <div className="relative w-full lg:w-[80%] h-[95vh] bg-gray-100 rounded-tr-md rounded-br-md p-2 pb-9 flex flex-col items-center gap-2 max-[550px]:gap-3.5 overflow-hidden">
 
+                    {/* Search Bar */}
                     <SearchBar placeholder={'Search notes...'} searchInput={searchInput} setSearchInput={setSearchInput} />
 
-                    <div className=" flex items-center justify-center text-xs font-semibold h-6 text-white rounded pr-3 pl-3 cursor-pointer bg-[#7d5dd3]">{activeFolderView}</div>
+                    {/* Folder Header */}
+                    <div className="flex items-center justify-center text-xs font-semibold h-6 text-white rounded px-3 cursor-pointer bg-[#7d5dd3]">
+                        {activeFolderView}
+                    </div>
 
-                    <TodoList activeFolder={activeFolder} searchInput={debouncedSearch} />
+                    <TodosList activeFolder={activeFolder} searchInput={debouncedSearch} />
 
-                    {isFormOpen && <TodoForm selectedTodo={selectedTodo} closeForm={closeForm} />}
+                    {isFormOpen && <TodosForm selectedTodo={selectedTodo} closeForm={closeForm} />}
 
-                    <div onClick={() => setIsFormOpen(true)}
-                        className="group absolute bottom-17 right-4 bg-white rounded-4xl shadow-xl p-4 cursor-pointer text-red-500 hover:scale-[1.1] hover:shadow-3xl transition-all duration-300 animate-fadeIn">
+                    {/* Floating Add Button */}
+                    <div
+                        onClick={() => setIsFormOpen(true)}
+                        className="group absolute bottom-20 right-10 max-[550px]:right-6 bg-white rounded-full shadow-xl p-4 max-[550px]:p-4.5 cursor-pointer text-red-500 hover:scale-[1.1] hover:shadow-3xl transition-all duration-300 animate-fadeIn"
+                    >
                         <FaRegPenToSquare className="text-xl" />
-                        <span
-                            className="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 px-1 py-1 text-xs font-semibold text-white bg-[#7d5dd3] rounded-md shadow-[0px_0px_8px_2px_rgba(93,64,177,0.6)] opacity-0 scale-90 translate-y-1 group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 transition-all duration-300 ease-out pointer-events-none whitespace-nowrap">
+                        <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 px-1 py-1 text-xs font-semibold text-white bg-[#7d5dd3] rounded-md shadow-[0px_0px_8px_2px_rgba(93,64,177,0.6)] opacity-0 scale-90 translate-y-1 group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 transition-all duration-300 ease-out pointer-events-none whitespace-nowrap">
                             New Note
                         </span>
                     </div>
 
-                    {!isSideBarOpen ?
-                        <FaBars onClick={toggleSideBar}
-                            className=" absolute top-3.5 left-3 text-xl text-[#6949c1] cursor-pointer animate-fadeIn" />
-                        : <RiCloseFill
+                    {/* Toggle Sidebar Button (visible only on small screens) */}
+                    {!isSideBarOpen ? (
+                        <FaBars
                             onClick={toggleSideBar}
-                            className="z-1000 absolute top-2 left-1.5 text-3xl font-bold text-white cursor-pointer animate-fadeIn" />}
+                            className="lg:hidden absolute top-4 left-3.5 text-xl max-[550px]:text-2xl text-[#6949c1] cursor-pointer animate-fadeIn"
+                        />
+                    ) : (
+                        <RiCloseFill
+                            onClick={toggleSideBar}
+                            className="lg:hidden absolute  top-3 left-2.5 text-3xl max-[550px]:text-4xl text-white font-bold cursor-pointer animate-fadeIn z-100"
+                        />
+                    )}
 
                 </div>
-
             </div>
-        </TodoContext.Provider >
-    )
+        </TodoContext.Provider>
+    );
 }
 
-export default TodosApp
-
-
+export default TodosApp;
