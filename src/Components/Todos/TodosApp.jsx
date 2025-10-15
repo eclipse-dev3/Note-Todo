@@ -5,8 +5,8 @@ import TodosList from "./TodosList"
 import TodosForm from "./TodosForm"
 import { FaRegPenToSquare, FaBars } from "react-icons/fa6";
 import { RiCloseFill } from "react-icons/ri";
-import TodosSideBar from "./TodosSideBar"
 import { LuNotebook } from "react-icons/lu";
+import TodosSideBar from './TodosSidebar'
 
 function TodosApp() {
 
