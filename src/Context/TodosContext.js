@@ -8,9 +8,9 @@ export const TodoContext = createContext({
             isCompleted: false,
             isPinned: false,
             isDeleted: false,
-            createdAt: new Date().toLocaleString(),
-            lastUpdateAt: new Date().toLocaleString(),
-            completedAt: new Date().toLocaleString(),
+            createdAt: new Date().toISOString(),
+            lastUpdateAt: new Date().toISOString(),
+            completedAt: new Date().toISOString(),
         },
     ],
 

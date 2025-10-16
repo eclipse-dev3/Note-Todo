@@ -118,7 +118,7 @@ function TodosCard({ todo, isRecycleBin }) {
                         todo.isCompleted ?
                             <div>
                                 < span className="flex items-center gap-2 text-xs font-semibold text-gray-700">
-                                    <BsCalendar2Check />
+                                    <BsCalendar2Check className="max-[550px]:text-[11px] font-bold"/>
                                     {FormatDate(todo?.completedAt)}</span>
                             </div>
                             : < span className="text-xs font-semibold text-gray-700">{FormatDateShort(todo?.createdAt)}</span>

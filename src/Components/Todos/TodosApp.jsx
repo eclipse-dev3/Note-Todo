@@ -50,7 +50,7 @@ function TodosApp() {
     const UpdateTodo = (id, updatedTodo) => {
         setTodos(prevTodos =>
             prevTodos.map(todo =>
-                todo.id === id ? { ...todo, ...updatedTodo, lastUpdateAt: new Date().toLocaleString() } : todo
+                todo.id === id ? { ...todo, ...updatedTodo, lastUpdateAt: new Date().toISOString() } : todo
             )
         );
     };
@@ -68,7 +68,7 @@ function TodosApp() {
     };
 
     const toggleComplete = (id) => {
-        setTodos(prevTodos => prevTodos.map(todo => todo.id === id ? { ...todo, isCompleted: !todo.isCompleted, completedAt: new Date().toLocaleString() } : todo));
+        setTodos(prevTodos => prevTodos.map(todo => todo.id === id ? { ...todo, isCompleted: !todo.isCompleted, completedAt: new Date().toISOString() } : todo));
     }
 
     const permanentDelTodo = (id) => {

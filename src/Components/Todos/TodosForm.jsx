@@ -28,8 +28,8 @@ function TodoForm({ selectedTodo, closeForm }) {
             isPinned: false,
             isDeleted: false,
             isCompleted: false,
-            createdAt: new Date().toLocaleString(),
-            lastUpdateAt: new Date().toLocaleString(),
+            createdAt: new Date().toISOString(),
+            lastUpdateAt: new Date().toISOString(),
         };
 
     const handleSave = () => {
@@ -41,8 +41,8 @@ function TodoForm({ selectedTodo, closeForm }) {
             addTodo({
                 id: Date.now(),
                 text,
-                createdAt: new Date().toLocaleString(),
-                lastUpdateAt: new Date().toLocaleString(),
+                createdAt: new Date().toISOString(),
+                lastUpdateAt: new Date().toISOString(),
                 isPinned: false,
                 isDeleted: false,
             });

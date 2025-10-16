@@ -1,34 +1,39 @@
 
-
 export function FormatDate(dateString) {
     if (!dateString) return "No date";
 
-    const date = new Date(dateString);
+    const parsedDate = new Date(dateString);
+    if (isNaN(parsedDate)) {
+        console.warn("⚠️ Invalid date:", dateString);
+        return "Invalid date";
+    }
 
     const options = {
         day: "numeric",
-        month: "short", // 👈 gives 'Oct' instead of 'October'
+        month: "short",
         year: "numeric",
-        hour: "numeric",
+        hour: "2-digit",
         minute: "2-digit",
         hour12: true,
     };
 
-    // Use `toLocaleString` for English (India or UK)
-    return date.toLocaleString("en-GB", options).replace(" ", ",");
+    return parsedDate.toLocaleString("en-GB", options);
 }
-
 
 export function FormatDateShort(dateString) {
     if (!dateString) return "No date";
 
-    const date = new Date(dateString);
+    const parsedDate = new Date(dateString);
+    if (isNaN(parsedDate)) {
+        console.warn("⚠️ Invalid date:", dateString);
+        return "Invalid date";
+    }
 
     const options = {
         day: "numeric",
-        month: "short", // Gives "Oct"
+        month: "short",
         year: "numeric",
     };
 
-    return date.toLocaleDateString("en-GB", options).replace(",", "");
+    return parsedDate.toLocaleDateString("en-GB", options);
 }

@@ -30,7 +30,7 @@ function NoteList({ activeFolder, searchInput }) {
     return (
 
         <div key={activeFolder}
-className="w-full grid grid-cols-3 max-md:grid-cols-3 max-lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-5 gap-2.5 p-2  max-[500px]:p-2 max-[500px]:gap-3.5 overflow-y-auto rounded-md animate-fadeIn scrollbar-hide">
+            className="w-full grid grid-cols-3 max-md:grid-cols-3 max-lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-5 gap-2.5 p-2  max-[500px]:p-2 max-[500px]:gap-3 overflow-y-auto rounded-md animate-fadeIn scrollbar-hide">
 
             {filteredNotes.map(note => (
                 <NoteCard

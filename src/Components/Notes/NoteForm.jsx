@@ -30,8 +30,8 @@ function NoteForm({ selectedNote, closeForm }) {
             content,
             isPinned: false,
             isDeleted: false,
-            createdAt: new Date().toLocaleString(),
-            lastUpdateAt: new Date().toLocaleString(),
+            createdAt: new Date().toISOString(),
+            lastUpdateAt: new Date().toISOString(),
         };
 
     const handleSave = () => {
@@ -44,8 +44,8 @@ function NoteForm({ selectedNote, closeForm }) {
                 id: Date.now(),
                 title,
                 content,
-                createdAt: new Date().toLocaleString(),
-                lastUpdateAt: new Date().toLocaleString(),
+                createdAt: new Date().toISOString(),
+                lastUpdateAt: new Date().toISOString(),
                 isPinned: false,
                 isDeleted: false,
             });
