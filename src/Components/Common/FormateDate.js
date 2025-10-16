@@ -10,6 +10,11 @@ function parseDateSafe(dateString) {
         parsedDate = new Date(dateString.replace(/-/g, '/'));
     }
 
+    // If still invalid, try adding 'T' for ISO format
+    if (isNaN(parsedDate.getTime()) && dateString.includes(' ')) {
+        parsedDate = new Date(dateString.replace(' ', 'T'));
+    }
+
     if (isNaN(parsedDate.getTime())) {
         console.warn("⚠️ Invalid date:", dateString);
         return null;
