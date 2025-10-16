@@ -1,18 +1,26 @@
-// Utility to safely parse a date string
+
 function parseDateSafe(dateString) {
     if (!dateString) return null;
 
-    // Try parsing ISO first
-    let parsedDate = new Date(dateString);
+    // If dateString is already a Date object, return it
+    if (dateString instanceof Date) return dateString;
 
-    // If invalid, try replacing '-' with '/' (some browsers need this)
-    if (isNaN(parsedDate.getTime())) {
-        parsedDate = new Date(dateString.replace(/-/g, '/'));
+    // If dateString matches YYYY-MM-DD format, add T00:00:00
+    if (/^\d{4}-\d{2}-\d{2}$/.test(dateString)) {
+        dateString = dateString + "T00:00:00";
     }
 
-    // If still invalid, try adding 'T' for ISO format
-    if (isNaN(parsedDate.getTime()) && dateString.includes(' ')) {
-        parsedDate = new Date(dateString.replace(' ', 'T'));
+    // If dateString has space instead of T, replace it
+    if (dateString.includes(' ') && !dateString.includes('T')) {
+        dateString = dateString.replace(' ', 'T');
+    }
+
+    // Try parsing
+    let parsedDate = new Date(dateString);
+
+    // If invalid, try replacing '-' with '/'
+    if (isNaN(parsedDate.getTime())) {
+        parsedDate = new Date(dateString.replace(/-/g, '/'));
     }
 
     if (isNaN(parsedDate.getTime())) {
@@ -52,8 +60,10 @@ export function FormatDateShort(dateString) {
     };
 
     try {
+        // Use browser default locale for better compatibility
         return date.toLocaleDateString(undefined, options);
     } catch {
-        return date.toDateString();
+        // Fallback for browsers that don't support options
+        return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
     }
 }
