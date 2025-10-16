@@ -97,7 +97,7 @@ function NoteApp() {
     return (
         <NoteContext.Provider value={{ notes, addNote, UpdateNote, softDelNote, permanentDelNote, togglePin, restoreNote, openForm, closeForm }}>
 
-            <div className="flex relative">
+            <div className="flex relative animate-fadeIn">
 
                 {/* Sidebar (hidden on small screens) */}
                 <NoteSideBar
@@ -112,7 +112,7 @@ function NoteApp() {
                     {/* Search Bar */}
                     <SearchBar placeholder={'Search notes...'}
                         searchInput={searchInput} setSearchInput={setSearchInput}
-                        className='text-[#7d5dd3]'
+                        className='text-[#7d5dd3] hover:text-[#7d5dd3]'
                     />
 
                     {/* Folder Header */}

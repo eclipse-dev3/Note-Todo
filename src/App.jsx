@@ -7,39 +7,48 @@ function App() {
   const [activeTab, setActiveTab] = useState("notes");
 
   return (
-    <>
-      <div className="min-h-screen flex flex-col bg-gray-50">
-        {/* Header */}
-        <header className="bg-gray-200 mb-1 flex items-center gap-1 relative">
-          {["notes", "todos"].map((tab) => (
+    <div className="min-h-screen flex flex-col bg-gray-50">
+      {/* Header */}
+      <header className="bg-gray-200 mb-1 flex items-center gap-1 relative">
+        {["notes", "todos"].map((tab) => {
+          const isActive = activeTab === tab;
+          const activeColor = tab === "notes" ? "#5e40b1" : "#ea105c";
+
+          return (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`relative w-[50%] p-1.5 max-[550px]:p-2.5 cursor-pointer transition-all duration-200 font-medium rounded-xs
-                ${activeTab === tab
-                  ? "bg-gray-100 text-[#5e40b1] shadow-sm"
-                  : "bg-white text-gray-900 hover:text-[#5e40b1] hover:bg-white"
+              className={`relative w-[50%] p-2.5 cursor-pointer transition-all duration-200 font-medium
+                ${isActive
+                  ? "bg-gray-100 shadow-sm"
+                  : "bg-gray-100 text-gray-700 hover:text-gray-900"
                 }`}
+              style={{
+                color: isActive ? activeColor : "",
+              }}
             >
               {tab === "notes" ? "Notes" : "Todos"}
 
               {/* Animated underline */}
-              {activeTab === tab && (
-                <span className="absolute bottom-0 left-0 w-full h-[2px] bg-[#5e40b1] rounded-full transition-all duration-300"></span>
-              )}
+              <span
+                className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] 
+                rounded-full transition-all duration-500 ease-in-out 
+                ${isActive ? "w-[100%]" : "w-0"}`}
+                style={{
+                  background: `linear-gradient(to right, ${activeColor}, ${tab === "notes" ? "#8a6df8" : "#ff6b8a"
+                    })`,
+                }}
+              ></span>
             </button>
-          ))}
-        </header>
+          );
+        })}
+      </header>
 
-        {/* Content */}
-        <main className="flex-1">
-          {activeTab === "notes" ? <NoteApp /> : <TodosApp />}
-        </main>
-
-        {/* Optional Footer */}
-        {/* <footer className='p-1.5 bg-[#593ba9] text-center fixed bottom-0 left-0 w-full z-100 text-white'>Footer</footer> */}
-      </div>
-    </>
+      {/* Content */}
+      <main className="flex-1">
+        {activeTab === "notes" ? <NoteApp /> : <TodosApp />}
+      </main>
+    </div>
   );
 }
 

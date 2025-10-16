@@ -101,7 +101,7 @@ function TodosApp() {
     return (
         <TodoContext.Provider value={{ todos, addTodo, UpdateTodo, softDelTodo, permanentDelTodo, togglePin, restoreTodo, toggleComplete, openForm, closeForm }}>
 
-            <div className="flex relative">
+            <div className="flex relative animate-fadeIn">
 
                 {/* Sidebar (hidden on small screens) */}
                 <TodosSideBar
@@ -114,9 +114,9 @@ function TodosApp() {
                 <div className="relative w-full lg:w-[80%] h-[95vh] bg-gray-100 rounded-tr-md rounded-br-md p-2 pb-9 flex flex-col items-center gap-2 max-[550px]:gap-3.5 overflow-hidden">
 
                     {/* Search Bar */}
-                    <SearchBar placeholder={'Search notes...'}
+                    <SearchBar placeholder={'Search todos...'}
                         searchInput={searchInput} setSearchInput={setSearchInput}
-                        className='text-[#ea105c]'
+                        className='text-[#ea105c] hover:text-[#ea105c]'
                     />
 
                     {/* Folder Header */}

@@ -59,6 +59,7 @@ function NoteCard({ note, isRecycleBin }) {
         h-[140px]
         xs:h-[140px] sm:h-[150px] md:h-[170px] 2xl:h-[200px]
         sm:min-w-[100px] md:min-w-[110px] lg:min-w-[140px] xl:min-w-[170px]
+        animate-fadeIn
         ${!isRecycleBin
                         ? "hover:bg-blue-50"
                         : "opacity-80 cursor-not-allowed"

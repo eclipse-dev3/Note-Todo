@@ -5,6 +5,7 @@ import { MdDeleteForever, MdRestore, MdEdit } from "react-icons/md";
 import { UseTodo } from "../../Context/TodosContext";
 import ConfirmModal from "../Common/Confirm";
 import { FormatDateShort, FormatDate } from "../Common/FormateDate";
+import { BsCalendar2Check } from "react-icons/bs";
 
 function TodosCard({ todo, isRecycleBin }) {
     const { openForm, softDelTodo, permanentDelTodo, restoreTodo, toggleComplete } = UseTodo();
@@ -57,6 +58,7 @@ function TodosCard({ todo, isRecycleBin }) {
                     hover:-translate-y-0.5
                     sm:h-[80px] lg:h-[80px] max-[640px]:h-[60px]
                     sm:min-w-[100px] md:min-w-[110px] lg:min-w-[140px] xl:min-w-[170px]
+                    animate-fadeIn
                     ${todo.isCompleted ? 'bg-red-50' : 'bg-white'}
             ${!isRecycleBin ? " hover:bg-red-50" : "opacity-80 cursor-not-allowed"}
                 `}
@@ -87,7 +89,7 @@ function TodosCard({ todo, isRecycleBin }) {
 
                     {todo.isPinned && (
                         <SiPinboard
-                            className="absolute top-2 right-3 text-md  text-[#ea105c] transform scale-x-[-1] group-hover:opacity-100"
+                            className="absolute top-2 right-3 max-[550px]:right-2.5 text-md  text-[#ea105c] transform scale-x-[-1] group-hover:opacity-100"
                         />
                     )}
 
@@ -115,7 +117,9 @@ function TodosCard({ todo, isRecycleBin }) {
                     {!isRecycleBin && (
                         todo.isCompleted ?
                             <div>
-                                < span className="text-xs font-semibold text-gray-700">{FormatDate(todo?.completedAt)}</span>
+                                < span className="flex items-center gap-2 text-xs font-semibold text-gray-700">
+                                    <BsCalendar2Check />
+                                    {FormatDate(todo?.completedAt)}</span>
                             </div>
                             : < span className="text-xs font-semibold text-gray-700">{FormatDateShort(todo?.createdAt)}</span>
                     )}
