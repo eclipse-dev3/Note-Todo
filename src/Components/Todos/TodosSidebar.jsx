@@ -51,44 +51,47 @@ function TodosSideBar({ isOpen, onSelectFolder, todos }) {
             </div >
 
             {/* Sidebar menu */}
-            <ul className="mt-15" >
-                {
-                    keys.map(({ id, label, icon, count }) => {
-                        const isActive = label === activeFolder;
-                        return (
-                            <li
-                                key={id}
-                                onClick={displayFolder(label, icon)}
-                                className={`mb-2 p-3 flex items-center justify-between rounded cursor-pointer
+            <div className="flex flex-col justify-between h-[100%] mt-15">
+
+                <ul>
+                    {
+                        keys.map(({ id, label, icon, count }) => {
+                            const isActive = label === activeFolder;
+                            return (
+                                <li
+                                    key={id}
+                                    onClick={displayFolder(label, icon)}
+                                    className={`mb-2 p-3 flex items-center justify-between rounded cursor-pointer
                             transition-colors duration-300 ${isActive ? "bg-[#af0a3e]" : "hover:bg-[#af0a3e]"}`}
-                            >
-                                <span className="flex items-center gap-2">{icon} {label}</span>
-                                <span className="text-xs font-semibold">{count}</span>
-                            </li>
-                        );
-                    })
-                }
-            </ul >
+                                >
+                                    <span className="flex items-center gap-2">{icon} {label}</span>
+                                    <span className="text-xs font-semibold">{count}</span>
+                                </li>
+                            );
+                        })
+                    }
+                </ul >
 
-            {/* Footer links */}
-            < ul className="absolute bottom-2 left-0 max-[550px]:bottom-5 w-full border-t border-white/30" >
-                <li className="p-3 flex items-center justify-evenly gap-2">
-                    <span className="text-sm font-bold flex flex-col">Contact</span>
-                    <a href="https://gaurav-kumar-03.vercel.app" target="_blank" className="relative group">
-                        <img src={Profile} alt="Profile" width={45} className="hover:scale-110 duration-200 p-0.5 bg-red-700 rounded-full" />
-                        <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 text-xs font-semibold text-white bg-[#f11a65] rounded-md shadow-[0_4px_10px_rgba(234,16,92,0.5)] opacity-0 group-hover:opacity-100 transition-all duration-300">
-                            Portfolio
-                        </span>
-                    </a>
-                </li>
+                {/* Footer links */}
+                < ul className="absolute bottom-2 left-0 max-[550px]:bottom-5 w-full border-t border-white/30" >
+                    <li className="p-3 flex items-center justify-evenly gap-2">
+                        <span className="text-sm font-bold flex flex-col">Contact</span>
+                        <a href="https://gaurav-kumar-03.vercel.app" target="_blank" className="relative group">
+                            <img src={Profile} alt="Profile" width={45} className="hover:scale-110 duration-200 p-0.5 bg-red-700 rounded-full" />
+                            <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 text-xs font-semibold text-white bg-[#f11a65] rounded-md shadow-[0_4px_10px_rgba(234,16,92,0.5)] opacity-0 group-hover:opacity-100 transition-all duration-300">
+                                Portfolio
+                            </span>
+                        </a>
+                    </li>
 
-                <li className="flex gap-4 max-[550px]:gap-6 pb-3 pt-2 justify-center">
-                    <a href="https://www.linkedin.com/in/gaurav-kumar-5b678437a/" target="_blank"><FaLinkedin className="hover:text-[#0077b5] hover:bg-white rounded max-[550px]:text-xl" /></a>
-                    <a href="https://github.com/eclipse-dev3" target="_blank"><FaGithubSquare className="hover:text-[#222] hover:bg-white rounded max-[550px]:text-xl" /></a>
-                    <a href="https://www.instagram.com/itseclipsedev/" target="_blank"><FaInstagramSquare className="hover:text-[#e1306c] hover:bg-white rounded max-[550px]:text-xl" /></a>
-                    <a href="https://x.com/eclipse_devX" target="_blank"><FaSquareXTwitter className="hover:text-[#222] hover:bg-white rounded max-[550px]:text-xl" /></a>
-                </li>
-            </ul >
+                    <li className="flex gap-4 max-[550px]:gap-6 pb-3 pt-2 justify-center">
+                        <a href="https://www.linkedin.com/in/gaurav-kumar-5b678437a/" target="_blank"><FaLinkedin className="hover:text-[#0077b5] hover:bg-white rounded max-[550px]:text-xl" /></a>
+                        <a href="https://github.com/eclipse-dev3" target="_blank"><FaGithubSquare className="hover:text-[#222] hover:bg-white rounded max-[550px]:text-xl" /></a>
+                        <a href="https://www.instagram.com/itseclipsedev/" target="_blank"><FaInstagramSquare className="hover:text-[#e1306c] hover:bg-white rounded max-[550px]:text-xl" /></a>
+                        <a href="https://x.com/eclipse_devX" target="_blank"><FaSquareXTwitter className="hover:text-[#222] hover:bg-white rounded max-[550px]:text-xl" /></a>
+                    </li>
+                </ul >
+            </div >
         </div >
     );
 }

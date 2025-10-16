@@ -30,10 +30,3 @@ export const UseNote = () => {
 }
 
 
-
-
-
-// add download note functionality
-// add lock and unlock note functionality
-// add tags and colors to notes
-// add filter by tags and colors

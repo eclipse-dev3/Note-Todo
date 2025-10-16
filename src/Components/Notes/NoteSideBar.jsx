@@ -1,5 +1,6 @@
 import { LuNotebook } from "react-icons/lu";
-import { TiLockClosed, TiPin } from "react-icons/ti";
+import { TiLockClosed } from "react-icons/ti";
+import { SiPinboard } from "react-icons/si";
 import { HiOutlineTrash } from "react-icons/hi2";
 import { useState } from "react";
 import { FaLinkedin, FaSquareXTwitter } from "react-icons/fa6";
@@ -16,7 +17,7 @@ function NoteSideBar({ isOpen, onSelectFolder, notes }) {
 
     const keys = [
         { id: 1, label: 'All Notes', icon: <LuNotebook />, count: allNotesCount },
-        { id: 2, label: 'Pinned Notes', icon: <TiPin className="text-xl" />, count: pinnedNotesCount },
+        { id: 2, label: 'Pinned Notes', icon: <SiPinboard className="transform scale-x-[-1]" />, count: pinnedNotesCount },
         { id: 3, label: 'Locked Notes', icon: <TiLockClosed className="text-xl" />, count: lockedNotesCount },
         { id: 4, label: 'Recycle Bin', icon: <HiOutlineTrash className="text-xl" />, count: recycleBinCount },
     ];
@@ -45,44 +46,48 @@ function NoteSideBar({ isOpen, onSelectFolder, notes }) {
             </div >
 
             {/* Sidebar menu */}
-            <ul className="mt-15" >
-                {
-                    keys.map(({ id, label, icon, count }) => {
-                        const isActive = label === activeFolder;
-                        return (
-                            <li
-                                key={id}
-                                onClick={displayFolder(label, icon)}
-                                className={`mb-2 p-3 flex items-center justify-between rounded cursor-pointer
+            <div className="flex flex-col justify-between h-[90%] mt-15">
+                <ul>
+                    {
+                        keys.map(({ id, label, icon, count }) => {
+                            const isActive = label === activeFolder;
+                            return (
+                                <li
+                                    key={id}
+                                    onClick={displayFolder(label, icon)}
+                                    className={`mb-2 p-3 flex items-center justify-between rounded cursor-pointer
                             transition-colors duration-300 ${isActive ? "bg-[#5e40b1]" : "hover:bg-[#5e40b1]"}`}
-                            >
-                                <span className="flex items-center gap-2">{icon} {label}</span>
-                                <span className="text-xs font-semibold">{count}</span>
-                            </li>
-                        );
-                    })
-                }
-            </ul >
+                                >
+                                    <span className="flex items-center gap-2">{icon} {label}</span>
+                                    <span className="text-xs font-semibold">{count}</span>
+                                </li>
+                            );
+                        })
+                    }
+                </ul >
 
-            {/* Footer links */}
-            < ul className="absolute bottom-2 left-0 max-[550px]:bottom-5 w-full border-t border-white/30" >
-                <li className="p-3 flex items-center justify-evenly gap-2">
-                    <span className="text-sm font-bold flex flex-col">Contact</span>
-                    <a href="https://gaurav-kumar-03.vercel.app" target="_blank" className="relative group">
-                        <img src={Profile} alt="Profile" width={45} className="hover:scale-110 duration-200 p-0.5 bg-blue-900 rounded-full" />
-                        <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 text-xs font-semibold text-white bg-[#5e40b1] rounded-md shadow-[0px_0px_8px_2px_rgba(93,64,177,0.8)] opacity-0 group-hover:opacity-100 transition-all duration-300">
-                            Portfolio
-                        </span>
-                    </a>
-                </li>
+                {/* Footer links */}
+                < ul className=" max-[550px]:bottom-5 w-full border-t border-white/30" >
+                    <li className="p-3 flex items-center justify-evenly gap-2">
+                        <span className="text-sm font-bold flex flex-col">Contact</span>
+                        <a href="https://gaurav-kumar-03.vercel.app" target="_blank" className="relative group">
+                            <img src={Profile} alt="Profile" width={45} className="hover:scale-110 duration-200 p-0.5 bg-blue-900 rounded-full" />
+                            <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 text-xs font-semibold text-white bg-[#5e40b1] rounded-md shadow-[0px_0px_8px_2px_rgba(93,64,177,0.8)] opacity-0 group-hover:opacity-100 transition-all duration-300">
+                                Portfolio
+                            </span>
+                        </a>
+                    </li>
 
-                <li className="flex gap-4 max-[550px]:gap-6 pb-3 pt-2 justify-center">
-                    <a href="https://www.linkedin.com/in/gaurav-kumar-5b678437a/" target="_blank"><FaLinkedin className="hover:text-[#0077b5] hover:bg-white rounded max-[550px]:text-xl" /></a>
-                    <a href="https://github.com/eclipse-dev3" target="_blank"><FaGithubSquare className="hover:text-[#222] hover:bg-white rounded max-[550px]:text-xl" /></a>
-                    <a href="https://www.instagram.com/itseclipsedev/" target="_blank"><FaInstagramSquare className="hover:text-[#e1306c] hover:bg-white rounded max-[550px]:text-xl" /></a>
-                    <a href="https://x.com/eclipse_devX" target="_blank"><FaSquareXTwitter className="hover:text-[#222] hover:bg-white rounded max-[550px]:text-xl" /></a>
-                </li>
-            </ul >
+                    <li className="flex gap-4 max-[550px]:gap-6 pb-3 pt-2 justify-center">
+                        <a href="https://www.linkedin.com/in/gaurav-kumar-5b678437a/" target="_blank"><FaLinkedin className="hover:text-[#0077b5] hover:bg-white rounded max-[550px]:text-xl" /></a>
+                        <a href="https://github.com/eclipse-dev3" target="_blank"><FaGithubSquare className="hover:text-[#222] hover:bg-white rounded max-[550px]:text-xl" /></a>
+                        <a href="https://www.instagram.com/itseclipsedev/" target="_blank"><FaInstagramSquare className="hover:text-[#e1306c] hover:bg-white rounded max-[550px]:text-xl" /></a>
+                        <a href="https://x.com/eclipse_devX" target="_blank"><FaSquareXTwitter className="hover:text-[#222] hover:bg-white rounded max-[550px]:text-xl" /></a>
+                    </li>
+                </ul >
+
+            </div>
+
         </div >
     );
 }
