@@ -17,7 +17,7 @@ export function FormatDate(dateString) {
         hour12: true,
     };
 
-    return parsedDate.toLocaleString("en-GB", options);
+    return parsedDate.toLocaleDateString("en-GB", options);
 }
 
 export function FormatDateShort(dateString) {
