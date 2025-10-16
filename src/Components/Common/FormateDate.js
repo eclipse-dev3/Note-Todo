@@ -1,18 +1,51 @@
-
 function parseDateSafe(dateString) {
     if (!dateString) return null;
 
     // If dateString is already a Date object, return it
     if (dateString instanceof Date) return dateString;
 
-    // If dateString matches YYYY-MM-DD format, add T00:00:00
-    if (/^\d{4}-\d{2}-\d{2}$/.test(dateString)) {
-        dateString = dateString + "T00:00:00";
+    // Remove any commas
+    dateString = dateString.replace(/,/g, '');
+
+    // Handle MM/DD/YYYY format
+    const usFormat = /^(\d{1,2})\/(\d{1,2})\/(\d{4})[ T]?(\d{1,2}:\d{2}:\d{2} ?[APMapm]{2})?$/;
+    const match = dateString.match(usFormat);
+    if (match) {
+        const month = match[1].padStart(2, '0');
+        const day = match[2].padStart(2, '0');
+        const year = match[3];
+        let isoString = `${year}-${month}-${day}`;
+        if (match[4]) {
+            // Convert time to 24-hour format
+            let time = match[4].replace(/ /g, '');
+            const ampmMatch = time.match(/([APMapm]{2})$/);
+            let hour = time.split(':')[0];
+            let min = time.split(':')[1];
+            let sec = time.split(':')[2].replace(/[APMapm]{2}/, '');
+            if (ampmMatch) {
+                let ampm = ampmMatch[1].toUpperCase();
+                hour = parseInt(hour, 10);
+                if (ampm === 'PM' && hour < 12) hour += 12;
+                if (ampm === 'AM' && hour === 12) hour = 0;
+            }
+            time = `${hour.toString().padStart(2, '0')}:${min}:${sec}`;
+            isoString += 'T' + time;
+        } else {
+            isoString += 'T00:00:00';
+        }
+        dateString = isoString;
     }
 
-    // If dateString has space instead of T, replace it
-    if (dateString.includes(' ') && !dateString.includes('T')) {
-        dateString = dateString.replace(' ', 'T');
+    // Handle ISO with AM/PM (like your error)
+    const isoAmPm = /^(\d{4}-\d{2}-\d{2})T(\d{1,2}):(\d{2}):(\d{2}) ([APMapm]{2})$/;
+    const isoMatch = dateString.match(isoAmPm);
+    if (isoMatch) {
+        let [_, ymd, hour, min, sec, ampm] = isoMatch;
+        hour = parseInt(hour, 10);
+        ampm = ampm.toUpperCase();
+        if (ampm === 'PM' && hour < 12) hour += 12;
+        if (ampm === 'AM' && hour === 12) hour = 0;
+        dateString = `${ymd}T${hour.toString().padStart(2, '0')}:${min}:${sec}`;
     }
 
     // Try parsing
