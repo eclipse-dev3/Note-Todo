@@ -2,12 +2,14 @@
 function parseDateSafe(dateString) {
     if (!dateString) return null;
 
-    // Clean up the string: remove extra spaces
-    const cleanDateString = dateString.trim();
+    // Try parsing ISO first
+    let parsedDate = new Date(dateString);
 
-    const parsedDate = new Date(cleanDateString);
+    // If invalid, try replacing '-' with '/' (some browsers need this)
+    if (isNaN(parsedDate.getTime())) {
+        parsedDate = new Date(dateString.replace(/-/g, '/'));
+    }
 
-    // Check if it's a valid date
     if (isNaN(parsedDate.getTime())) {
         console.warn("⚠️ Invalid date:", dateString);
         return null;
@@ -40,9 +42,13 @@ export function FormatDateShort(dateString) {
 
     const options = {
         day: "numeric",
-        month: "short", // e.g., "Oct"
+        month: "short",
         year: "numeric",
     };
 
-    return date.toLocaleDateString("en-GB", options);
+    try {
+        return date.toLocaleDateString(undefined, options);
+    } catch {
+        return date.toDateString();
+    }
 }
