@@ -41,8 +41,7 @@ function NoteDetails({ note, softDelete }) {
       <div className="animate-fadeSideIn shadow-[0px_4px_12px_rgba(0,0,0,0.3)] flex flex-col max-[550px]:gap-2 bg-white absolute top-5.5 right-0 w-40 p-1.5 rounded-lg z-20 border border-gray-200">
 
         {/* Pin / Unpin */}
-        <p
-          onClick={handlePinToggle}
+        <p onClick={handlePinToggle}
           className="text-sm text-gray-900 font-semibold flex items-center gap-2 cursor-pointer hover:bg-[#f3e9ff] hover:text-[#6949c1] rounded-md h-10 px-2 transition-all duration-200"
         >
           {note?.isPinned ? (
@@ -57,8 +56,7 @@ function NoteDetails({ note, softDelete }) {
         </p>
 
         {/* Download Button */}
-        <p
-          className="text-sm text-gray-900 font-semibold flex items-center gap-2 cursor-pointer hover:bg-[#f3e9ff] hover:text-[#6949c1] rounded-md h-10 px-2 transition-all duration-200"
+        <p className="text-sm text-gray-900 font-semibold flex items-center gap-2 cursor-pointer hover:bg-[#f3e9ff] hover:text-[#6949c1] rounded-md h-10 px-2 transition-all duration-200"
           onClick={() => handleDownloadPdf(note)}
         >
           <HiOutlineDownload className="text-[#6949c1] text-lg" /> Download

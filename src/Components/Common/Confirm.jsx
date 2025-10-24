@@ -9,7 +9,7 @@ function ConfirmModal({ isOpen, title, message, onCancel, onConfirm, classes, co
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="absolute inset-0 top-0 left-0 w-full h-full bg-black/30 flex items-center justify-center z-1000"
+                    className="fixed inset-0 top-0 left-0 w-full h-full bg-black/30 flex items-center justify-center z-1000"
                     onClick={onCancel}
                 >
                     <motion.div
