@@ -78,7 +78,7 @@ function NoteCard({ note, isRecycleBin }) {
                         }
 
                         <h2 className="font-semibold text-gray-800 line-clamp-1 text-md  max-[550px]:text-sm">
-                            {note.title ? note.title : "Untitled Note"}
+                            {note.title ? note.title : "No Title"}
                         </h2>
                     </div>
 
@@ -93,7 +93,7 @@ function NoteCard({ note, isRecycleBin }) {
                 {/* Content....... */}
                 <div className="w-full h-full overflow-hidden">
                     <p className="px-2 max-[550px]:px-1 py-0.5 text-gray-700 text-sm max-sm:text-xs truncate overflow-hidden text-ellipsis whitespace-normal line-clamp-4 max-sm:line-clamp-5">
-                        {note.content || "No content available..."}
+                        {note.content || "No description..."}
                     </p>
                 </div>
 

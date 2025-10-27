@@ -79,7 +79,7 @@ function TodoForm({ selectedTodo, closeForm }) {
                     />
                     <GiCheckMark
                         onClick={handleSave}
-                        className="cursor-pointer hover:scale-110 duration-200 text-2xl text-[#6949c1] hover:purple-700 transition-all"
+                        className="cursor-pointer hover:scale-110 duration-200 text-2xl text-[#ea105c] hover:purple-700 transition-all"
                     />
                 </div>
 
@@ -87,7 +87,7 @@ function TodoForm({ selectedTodo, closeForm }) {
                 <div className="absolute top-17 right-6">
                     <BsThreeDotsVertical
                         onClick={handleDetailsToggle}
-                        className="cursor-pointer text-xl hover:scale-110 duration-200 text-gray-600 hover:text-gray-900 "
+                        className={`cursor-pointer text-xl hover:scale-110 duration-200 hover:text-[#ea105c] ${isDetailsOpen ? "text-[#ea105c]" : "text-gray-600"} transition-all`}
                     />
                     {isDetailsOpen && (
                         <TodoDetails
@@ -105,7 +105,7 @@ function TodoForm({ selectedTodo, closeForm }) {
                     autoFocus
                     spellCheck="false"
                     onChange={(e) => setText(e.target.value)}
-                    className="flex-1 m-4 mt-2 p-4 rounded-xl bg-white/50 border border-gray-200 outline-none shadow-inner resize-none focus:ring-2 focus:ring-[#6949c1]/40 transition-all duration-300"
+                    className="flex-1 m-4 mt-2 p-4 rounded-xl bg-white/50 border border-gray-200 outline-none shadow-inner resize-none focus:ring-2 focus:ring-[#ea105c]/40 transition-all duration-300"
                 ></textarea>
 
             </div>

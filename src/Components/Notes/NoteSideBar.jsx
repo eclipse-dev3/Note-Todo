@@ -18,7 +18,7 @@ function NoteSideBar({ isOpen, onSelectFolder, notes }) {
     const keys = [
         { id: 1, label: 'All Notes', icon: <LuNotebook />, count: allNotesCount },
         { id: 2, label: 'Pinned Notes', icon: <SiPinboard className="transform scale-x-[-1]" />, count: pinnedNotesCount },
-        { id: 3, label: 'Locked Notes', icon: <TiLockClosed className="text-xl" />, count: lockedNotesCount },
+        // { id: 3, label: 'Locked Notes', icon: <TiLockClosed className="text-xl" />, count: lockedNotesCount },
         { id: 4, label: 'Recycle Bin', icon: <HiOutlineTrash className="text-xl" />, count: recycleBinCount },
     ];
 
@@ -81,10 +81,10 @@ function NoteSideBar({ isOpen, onSelectFolder, notes }) {
                     </li>
 
                     <li className="flex gap-4 max-[550px]:gap-6 pb-3 pt-2 justify-center">
-                        <a href="https://www.linkedin.com/in/gaurav-kumar-5b678437a/" target="_blank"><FaLinkedin className="hover:text-[#0077b5] hover:bg-white rounded max-[550px]:text-xl" /></a>
-                        <a href="https://github.com/eclipse-dev3" target="_blank"><FaGithubSquare className="hover:text-[#222] hover:bg-white rounded max-[550px]:text-xl" /></a>
-                        <a href="https://www.instagram.com/itseclipsedev/" target="_blank"><FaInstagramSquare className="hover:text-[#e1306c] hover:bg-white rounded max-[550px]:text-xl" /></a>
-                        <a href="https://x.com/eclipse_devX" target="_blank"><FaSquareXTwitter className="hover:text-[#222] hover:bg-white rounded max-[550px]:text-xl" /></a>
+                        <a href="https://www.linkedin.com/in/gaurav-kumar-5b678437a/" target="_blank"><FaLinkedin className="hover:text-[#0077b5]  rounded max-[550px]:text-xl hover:scale-130 duration-150" /></a>
+                        <a href="https://github.com/eclipse-dev3" target="_blank"><FaGithubSquare className="hover:text-[#222]  rounded max-[550px]:text-xl hover:scale-130 duration-150" /></a>
+                        <a href="https://www.instagram.com/itseclipsedev/" target="_blank"><FaInstagramSquare className="hover:text-[#e1306c]  rounded max-[550px]:text-xl hover:scale-130 duration-150" /></a>
+                        <a href="https://x.com/eclipse_devX" target="_blank"><FaSquareXTwitter className="hover:text-[#222] rounded max-[550px]:text-xl hover:scale-130 duration-150" /></a>
                     </li>
                 </ul >
 

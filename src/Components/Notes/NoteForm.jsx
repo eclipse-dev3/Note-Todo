@@ -95,14 +95,14 @@ function NoteForm({ selectedNote, closeForm }) {
                         placeholder="Title..."
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
-                        className="w-full bg-transparent px-3 py-1.5 border-b-2 border-gray-300 outline-none focus:border-[#6949c1] text-lg font-semibold placeholder-gray-400 transition-all duration-300"
+                        className="w-full bg-transparent px-3 py-1.5 rounded-md border-b-2 border-gray-300 outline-none focus:border-[#6949c1] text-lg font-semibold placeholder-gray-400 transition-all duration-300"
                         autoFocus
                         spellCheck="false"
                     />
                     <div className="relative ml-2">
                         <BsThreeDotsVertical
                             onClick={handleDetailsToggle}
-                            className="cursor-pointer text-xl hover:scale-110 duration-200 text-gray-600 hover:text-gray-900"
+                            className={`cursor-pointer text-xl hover:scale-110 duration-200 hover:text-[#6949c1] ${isDetailsOpen ? "text-[#6949c1]" : "text-gray-600"} transition-all`}
                         />
                         {isDetailsOpen && (
                             <NoteDetails
