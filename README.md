@@ -106,7 +106,7 @@ Icons: React Icons. Styling: Tailwind CSS.
 
 
 **Live link**
-- Portfolio: [https://note-todo-seven.vercel.app/](https://note-todo-seven.vercel.app/)
+- Live: [https://note-todo-seven.vercel.app/](https://note-todo-seven.vercel.app/)
 
 
 **Gaurav Kumar**
