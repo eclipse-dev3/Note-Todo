@@ -14,7 +14,7 @@ function TodosApp() {
     const [selectedTodo, setSelectedTodo] = useState(null);
     const [isFormOpen, setIsFormOpen] = useState(false);
     const [isSideBarOpen, setIsSideBarOpen] = useState(false);
-    const [activeFolder, setActiveFolder] = useState('All Notes');
+    const [activeFolder, setActiveFolder] = useState('All Todos');
     const [searchInput, setSearchInput] = useState('');
     const [debouncedSearch, setDebouncedSearch] = useState('');
     const [activeFolderView, setActiveFolderView] = useState(
