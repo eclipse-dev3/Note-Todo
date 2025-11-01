@@ -1,7 +1,11 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap'); */
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+
 body {
   padding: 2px 5px;
   background-color: rgb(255, 255, 255);
-  /* font-family: 'Roboto', sans-serif; */
+  /* font-family: 'Urbanist', sans-serif; */
 }
 
 @media (max-width: 1024px) {
@@ -104,7 +108,3 @@ body {
 
 
 /* ................................... */
-
-
-
-

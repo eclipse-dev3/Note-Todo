@@ -72,12 +72,12 @@ function NoteCard({ note, isRecycleBin }) {
 
                 <div className="flex justify-between items-center gap-2 w-[96%]">
 
-                    <div className="flex items-center gap-3 w-[80%]">
+                    <div className="flex items-center gap-3 w-[75%]">
                         {note?.isPinned ? <div className="bg-blue-600 w-0.5 h-0.5 rounded-full shadow-[0px_0px_5px_2.5px_rgba(0,0,255,1)]"></div>
                             : <div className="bg-orange-600 w-0.5 h-0.5 rounded-full shadow-[0px_0px_5px_2.5px_rgba(255,0,0,1)]"></div>
                         }
 
-                        <h2 className="font-semibold text-gray-800 line-clamp-1 text-md  max-[550px]:text-sm">
+                        <h2 className="font-semibold text-gray-800 line-clamp-1 text-md max-[550px]:text-sm overflow-hidden">
                             {note.title ? note.title : "No Title"}
                         </h2>
                     </div>

@@ -89,7 +89,7 @@ function TodosCard({ todo, isRecycleBin }) {
 
                     {todo.isPinned && (
                         <SiPinboard
-                            className="absolute top-2 right-3 max-[550px]:right-2.5 text-md  text-[#ea105c] transform scale-x-[-1] group-hover:opacity-100"
+                            className="absolute top-2 right-3 max-[550px]:right-2.5 text-md text-[#ea105c] transform scale-x-[-1] group-hover:opacity-100"
                         />
                     )}
 
