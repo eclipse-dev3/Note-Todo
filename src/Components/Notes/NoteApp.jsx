@@ -50,7 +50,7 @@ function NoteApp() {
     const UpdateNote = (id, updatedNote) => {
         setNotes(prevNotes =>
             prevNotes.map(note =>
-                note.id === id ? { ...note, ...updatedNote, lastUpdateAt: new Date().toLocaleString() } : note
+                note.id === id ? { ...note, ...updatedNote, lastUpdateAt:  new Date().toISOString() } : note
             )
         );
     };
