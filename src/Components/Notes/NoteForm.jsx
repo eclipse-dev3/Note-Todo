@@ -23,7 +23,7 @@ function NoteForm({ selectedNote, closeForm }) {
     }, [selectedNote]);
 
     const currentNote = selectedNote
-        ? notes.find((n) => n.id === selectedNote.id) || selectedNote
+        ? notes.find((n) => n.id === selectedNote.id)
         : {
             id: "temp",
             title,

@@ -16,7 +16,6 @@ export const NoteContext = createContext({
     UpdateNote: (id, updatedNote) => { },
     softDelNote: (id) => { },
     permanentDelNote: (id) => { },
-    recycleBinNotes: (id) => { },
     openForm: (note) => { },
     closeForm: () => { },
     restoreNote: (id) => { },

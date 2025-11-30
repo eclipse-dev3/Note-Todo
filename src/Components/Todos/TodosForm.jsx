@@ -21,7 +21,7 @@ function TodoForm({ selectedTodo, closeForm }) {
     }, [selectedTodo]);
 
     const currentTodo = selectedTodo
-        ? todos.find((n) => n.id === selectedTodo.id) || selectedTodo
+        ? todos.find((n) => n.id === selectedTodo.id)
         : {
             id: "temp",
             text,

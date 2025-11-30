@@ -20,7 +20,7 @@ function App() {
               onClick={() => setActiveTab(tab)}
               className={`relative w-[50%] p-2.5 cursor-pointer transition-all duration-200 font-medium
                 ${isActive
-                  ? "bg-gray-100 shadow-sm"
+                  ? "bg-gray-200 shadow-sm"
                   : "bg-gray-100 text-gray-700 hover:text-gray-900"
                 }`}
               style={{
@@ -32,7 +32,7 @@ function App() {
               {/* Animated underline */}
               <span
                 className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] 
-                rounded-full transition-all duration-500 ease-in-out 
+                rounded-md transition-all duration-500 ease-in-out 
                 ${isActive ? "w-[100%]" : "w-0"}`}
                 style={{
                   background: `linear-gradient(to right, ${activeColor}, ${tab === "notes" ? "#8a6df8" : "#ff6b8a"

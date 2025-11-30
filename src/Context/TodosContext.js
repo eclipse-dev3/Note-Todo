@@ -18,7 +18,6 @@ export const TodoContext = createContext({
     UpdateTodo: (id, updatedTodo) => { },
     softDelTodo: (id) => { },
     permanentDelTodo: (id) => { },
-    recycleBinTodo: (id) => { },
     openForm: (note) => { },
     closeForm: () => { },
     restoreTodo: (id) => { },
@@ -27,11 +26,8 @@ export const TodoContext = createContext({
 
 });
 
-
-
 export const UseTodo = () => {
     return useContext(TodoContext);
 }
-
 
 
